@@ -1,24 +1,69 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route, Navigate } from "react-router-dom";
+import Home from "./pages/Home/Home";
+import Workers from "./pages/Workers/Workers";
+import Worker from "./pages/Worker/Worker";
+import Header from "./components/header/Header";
+import Footer from "./components/footer/Footer";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import Login from "./pages/Login/Login";
+import DoesntExist from "./pages/DoesntExist/DoesntExist";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAuthMe, selectIsAuth } from "./redux/slices/auth";
+import { fetchUsers } from "./redux/slices/users";
+import CurrentTransportation from "./pages/CurrentTransportation/CurrentTransportation";
+import Chat from "./pages/Chat/Chat";
+import CurrentTransportationItem from "./pages/CurrentTransportation/CurrentTransportationItem";
+import Transportation from "./pages/Transportation/Transportation";
+import Carriers from "./pages/Carriers/Carriers";
+import axios from "./utils/axios";
 
 function App() {
+  const dispatch = useDispatch();
+  const isAuth = useSelector(selectIsAuth);
+  const token = window.localStorage.getItem("token");
+  const userData = useSelector((state) => state.auth.data);
+  const [downloads, setDownloads] = useState([]);
+  const getAllInternalDownloads = async () => {
+    try {
+      const { data } = await axios.get("/internal-downloads");
+      setDownloads(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getAllInternalDownloads();
+  }, []);
+  useEffect(() => {
+    dispatch(fetchAuthMe());
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+      <Routes>
+        <Route exact path="/login" element={<Login />} />
+        <Route element={<PrivateRoute />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/workers" element={<Workers />} />
+          <Route path={`/workers/:id`} element={<Worker />} />
+          <Route path={`/chat`} element={<Chat />} />
+          <Route path={`/transportation`} element={<Transportation />} />
+          <Route path={`/carriers`} element={<Carriers />} />
+          <Route
+            path={`/current-transportation`}
+            element={<CurrentTransportation />}
+          />
+          <Route
+            path={`/current-transportation/:id`}
+            element={<CurrentTransportationItem />}
+          />
+        </Route>
+        <Route path="*" exact={true} element={<DoesntExist />} />
+      </Routes>
+
+      {/* <Footer /> */}
+    </>
   );
 }
 
