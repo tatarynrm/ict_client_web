@@ -30,7 +30,7 @@ const HeaderAvatar = () => {
         <div className="header__avatar-contacts">
           <p>Тел.моб : {userData?.TEL}</p>
         </div>
-        <button onClick={logoutFromAccount} className="normal">
+        <button onClick={logoutFromAccount} className="danger">
           Вийти з аккаунту
         </button>
       </div>

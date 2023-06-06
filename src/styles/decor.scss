@@ -1,6 +1,35 @@
 .decor__line-div {
   position: absolute;
-  // background-color: rgba(212, 219, 37, 0.4);
+  background-color: var(--button-main);
+  height: 4px;
+  width: 100%;
+  left: 0;
+  top: -2px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.decor__line-div-zap-mizh {
+  position: absolute;
+  background-color: var(--button-main);
+  height: 4px;
+  width: 100%;
+  left: 0;
+  top: -2px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.decor__line-div-zap-region {
+  position: absolute;
+  background-color: red;
+  height: 4px;
+  width: 100%;
+  left: 0;
+  top: -2px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.decor__div {
+  position: absolute;
   background-color: var(--button-main);
   height: 4px;
   width: 100%;

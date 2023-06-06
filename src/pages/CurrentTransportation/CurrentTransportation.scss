@@ -36,10 +36,13 @@
       padding-bottom: 40px;
     }
     &-edit {
-      display: none;
-      // position: absolute;
+      // display: none;
+      position: absolute;
       // left: -150px;
-      // top: -20px;
+      top: -20px;
+    }
+    &-propsals {
+      // width: 120px;
     }
   }
 

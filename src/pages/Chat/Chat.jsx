@@ -17,7 +17,6 @@ const Chat = () => {
   useEffect(() => {
     dispatch(fetchActiveUsers());
   }, []);
-  console.log(selectedChat);
   return (
     <div className="chat container">
       <div className="chat__inner">
@@ -33,6 +32,7 @@ const Chat = () => {
             <div className="chat__title">{department}</div>
             {users.items
               ? users.items
+
                   .filter((item) => {
                     return search.toLowerCase() === ""
                       ? item
@@ -40,6 +40,7 @@ const Chat = () => {
                           item.IMJA.toLowerCase().includes(search) ||
                           item.IMJA.toUpperCase().includes(search);
                   })
+
                   .map((item, idx) => {
                     return (
                       <div
@@ -62,7 +63,7 @@ const Chat = () => {
                       </div>
                     );
                   })
-              : null}
+              : "Завантаження"}
           </div>
         </aside>
         <div className="chat__container">

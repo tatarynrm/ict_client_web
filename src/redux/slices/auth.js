@@ -4,8 +4,13 @@ import axios from "../../utils/axios";
 export const fetchAuth = createAsyncThunk(
   "auth/fetchUserData",
   async (params) => {
-    const { data } = await axios.post("/auth/login", params);
-    return data;
+    try {
+      const { data } = await axios.post("/auth/login", params);
+
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
   }
 );
 export const fetchRegister = createAsyncThunk(

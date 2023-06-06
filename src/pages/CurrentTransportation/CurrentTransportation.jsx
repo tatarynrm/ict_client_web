@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import axios from "../../utils/axios";
 import InternalDownloads from "../../components/forms/downloads/InternalDownloads";
 import moment from "moment";
+import TrnasportationItem from "./TrnasportationItem";
 const CurrentTransportation = () => {
   const [downloads, setDownloads] = useState([]);
   const [showForm, setShowForm] = useState(false);
@@ -30,60 +31,22 @@ const CurrentTransportation = () => {
           setShowForm={setShowForm}
         />
       ) : null}
-      <div className="add__download">
-        {showForm ? (
-          <button
-            onClick={() => setShowForm((prev) => !prev)}
-            className="normal"
-          >
-            Приховати форму
-          </button>
-        ) : (
-          <button
-            onClick={() => setShowForm((prev) => !prev)}
-            className="normal"
-          >
-            Додати завантаження
-          </button>
-        )}
-      </div>
-      {/* <div className="current__transportation-menu">
-        <div className="id">Номер замовлення</div>
-        <div className="text">Завантаження</div>
-        <div className="text"></div>
-      </div> */}
+      {/* <div className="add__download"> */}
+      {showForm ? (
+        <button onClick={() => setShowForm((prev) => !prev)} className="normal">
+          Приховати форму
+        </button>
+      ) : (
+        <button onClick={() => setShowForm((prev) => !prev)} className="normal">
+          Додати завантаження
+        </button>
+      )}
+      {/* </div> */}
       {downloads.length > 0 ? (
         downloads
           ?.sort((a, b) => b.ID - a.ID)
           .map((item, idx) => {
-            return (
-              <div key={idx} className="current__transportation-item">
-                <div className="decor__line-div"></div>
-                <div className="current__transportation-item-info">
-                  <div className="current__transportation-item-author">
-                    <span>{item.MANAGER}</span>
-                  </div>
-                  <div className="current__transportation-item-date">
-                    <p>{item.CREATE_DATE}</p>
-                  </div>
-                </div>
-                <div className="current__transportation-item-text">
-                  {item.TEXT}
-                </div>
-                <Link to={`/current-transportation/${item.ID}`}>
-                  <button className="current__transportation-item-text">
-                    Запропонувати транспорт
-                  </button>
-                </Link>
-                <div className="current__transportation-item-edit">
-                  <button>Редагувати</button>
-                  <button>Видалити</button>
-                </div>
-                {/* <div className="transportation__comments">
-                <div className="comment">1</div>
-              </div> */}
-              </div>
-            );
+            return <TrnasportationItem item={item} />;
           })
       ) : (
         <div

@@ -1,0 +1,130 @@
+// KEYFRAMES
+
+.zap__comments {
+  position: absolute;
+  width: 400px;
+  height: 80vh;
+  top: 0;
+  right: -600px;
+  background-color: rgb(238, 231, 231);
+  padding: 0.7rem;
+  border-radius: 10px;
+  z-index: 99999;
+  animation: shown 0.4s ease;
+  display: none;
+}
+.zap__comments-show {
+  position: absolute;
+  width: 400px;
+  height: 80vh;
+  top: 0;
+  right: 0px;
+  background-color: rgb(242, 241, 241);
+  padding: 0.7rem;
+  border-radius: 10px;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
+    rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+  animation: shown 0.4s ease;
+  display: block;
+  z-index: 99999;
+  .exit__modal {
+    position: absolute;
+    // width: 100px;
+    right: 0;
+    top: 0;
+    font-size: 30px;
+    cursor: pointer;
+    // background-color: red;
+    z-index: 999;
+  }
+}
+
+.comments__item {
+  position: relative;
+
+  &-author {
+    padding: 0.1rem;
+  }
+  &-zap-info {
+    .cities {
+      font-size: 14px;
+      // font-weight: bold;
+    }
+    .zap-text {
+      font-size: 20px;
+      font-weight: bold;
+      word-break: break-all;
+    }
+  }
+
+  &-block {
+    margin-top: 20px;
+    overflow: hidden;
+    overflow-y: scroll;
+    max-height: 60vh;
+
+    &::-webkit-scrollbar {
+      // display: none;
+      width: 5px;
+      height: 8px;
+      background-color: #aaa;
+    }
+    &::-webkit-scrollbar-track {
+      background: rgb(237, 230, 230);
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 10px;
+    }
+
+    .manager__comment {
+      border-radius: 10px;
+      padding: 1rem;
+      word-wrap: break-word;
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+    .own {
+      background-color: rgb(90, 201, 232);
+      text-decoration: underline;
+    }
+  }
+  &-create {
+    position: absolute;
+    bottom: 10px;
+    left: 0px;
+    display: flex;
+  }
+}
+
+.comments__item-block {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.comments__item-create {
+  width: 100%;
+}
+.comments__control {
+  width: 100%;
+  // background-color: red;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  input {
+    width: 100%;
+  }
+  // justify-content: space-between;
+  // gap: 20px;
+}
+
+// KEYFRAMES
+// @keyframes shown {
+//   0% {
+//     right: -600px;
+//   }
+
+//   100% {
+//     right: 0px;
+//   }
+// }

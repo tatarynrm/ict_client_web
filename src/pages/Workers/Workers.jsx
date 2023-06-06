@@ -1,6 +1,11 @@
 import "./Workers.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams, useSearchParams } from "react-router-dom";
+import {
+  Link,
+  useParams,
+  useSearchParams,
+  useLocation,
+} from "react-router-dom";
 import axios from "../../utils/axios";
 import { useEffect, useState } from "react";
 import {
@@ -11,12 +16,15 @@ import {
 import Loader from "../../components/loader/Loader";
 
 const Workers = () => {
+  const location = useLocation();
   const auth = useSelector((state) => state.auth.data);
   const { users } = useSelector((state) => state.users);
   const [isLoading, setIsLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const dispatch = useDispatch();
   const [search, setSearch] = useState("");
+  const filterLocation = location.search.split("=");
+  const pageLocation = filterLocation[filterLocation.length - 1];
   const showActiveUsers = () => {
     setSearchParams({ filter: "active" });
     dispatch(fetchActiveUsers());
@@ -30,9 +38,21 @@ const Workers = () => {
     dispatch(fetchUsers());
   };
   useEffect(() => {
-    dispatch(fetchActiveUsers());
-    setSearchParams({ filter: "active" });
+    switch (pageLocation) {
+      case "active":
+        dispatch(fetchActiveUsers());
+        setSearchParams({ filter: "active" });
+        break;
+      case "fired":
+        dispatch(fetchFiredUsers());
+        setSearchParams({ filter: "fired" });
+        break;
+
+      default:
+        break;
+    }
   }, []);
+
   return (
     <div className="workers container">
       <div className="workers__list container">
@@ -87,7 +107,7 @@ const Workers = () => {
               </div>
             ))
         ) : (
-          <p>Завантаження ...</p>
+          <p>Оберіть категорію</p>
         )}
       </div>
     </div>

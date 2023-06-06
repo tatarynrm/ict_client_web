@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import CurrentTransportationComments from "../Comments/CurrentTransportationComments/CurrentTransportationComments";
 import CommentsForm from "../../components/forms/comments/CommentsForm";
 import axios from "../../utils/axios";
+import GoBack from "../../components/button/goBack/GoBack";
 const CurrentTransportationItem = () => {
   const [donwload, setDownload] = useState(null);
   const { id } = useParams();
@@ -21,6 +22,7 @@ const CurrentTransportationItem = () => {
   console.log(donwload);
   return (
     <div className="current__transportation_item container">
+      <GoBack />
       {donwload ? (
         <div className="current__cargo">
           <div>{donwload.ID}</div>

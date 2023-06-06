@@ -11,15 +11,15 @@ export const navbar_menu = [
   { label: "Чат", link: "/chat", icon: <FcAssistant /> },
   {
     label: "Завантаження",
+    link: "/logistic-work",
     icon: <FcShipped />,
-    submenu: [
-      { label: "Актуальні завантаження", link: "/current-transportation" },
-      { label: "Тендери", link: "/tenders" },
-      { label: "Закриті завантаження", link: "/closed-transportation" },
-      { label: "Запит ціни", link: "/transportation-price" },
-    ],
+    // submenu: [
+    //   { label: "Актуальні завантаження", link: "/current-transportation" },
+    //   { label: "Тендери", link: "/tenders" },
+    //   { label: "Закриті завантаження", link: "/closed-transportation" },
+    //   { label: "Запит ціни", link: "/transportation-price" },
+    // ],
   },
-  { label: "Працівники", link: "/workers", icon: <FcBusinessman /> },
   {
     label: "Експедиція",
     icon: <FcSalesPerformance />,
@@ -39,4 +39,5 @@ export const navbar_menu = [
     //   { label: "Експедиції", link: "/expeditions" },
     // ],
   },
+  { label: "Працівники", link: "/workers", icon: <FcBusinessman /> },
 ];
