@@ -25,7 +25,7 @@ import { io } from "socket.io-client";
 // import socket from "./utils/socket";
 
 function App() {
-  const socket = useRef(io("ws://192.169.1.33:5002"));
+  const socket = useRef(io("http://192.168.5.180:8800"));
   const dispatch = useDispatch();
   const isAuth = useSelector(selectIsAuth);
   const token = window.localStorage.getItem("token");

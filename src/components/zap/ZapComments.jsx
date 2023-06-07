@@ -16,7 +16,7 @@ const ZapComments = ({ showComments, selectedZap }) => {
   const dispatch = useDispatch();
   const bottomRef = useRef();
   useEffect(() => {
-    socket.current = io("http://localhost:5002");
+    socket.current = io("http://192.168.1.33:5002");
   }, []);
   const addComment = async (e) => {
     e.preventDefault();

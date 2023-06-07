@@ -18,7 +18,7 @@ import ZapItem from "../../components/zap/ZapItem";
 import ZapEditForm from "../../components/zap/ZapEditForm";
 import { editZapAddSlice } from "../../redux/slices/edit";
 
-const socket = io("http://localhost:5002");
+const socket = io("http://192.168.1.33:5002");
 const LogisticWork = () => {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.auth.data);

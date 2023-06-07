@@ -17,7 +17,7 @@ const AddZap = ({ selectedGroup, showAddZap }) => {
   const [zapType, setZapType] = useState(null);
   const dispatch = useDispatch();
   useEffect(() => {
-    socket.current = io("http://localhost:5002");
+    socket.current = io("http://192.168.1.33:5002");
   }, []);
   const handleSubmitAddZap = async (e) => {
     e.preventDefault();
