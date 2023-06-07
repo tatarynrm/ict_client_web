@@ -11,15 +11,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchActiveUsers } from "../../redux/slices/users";
 import { fetchGroups, fetchZap } from "../../redux/slices/zap";
 
-// import { socket } from "../../utils/socket";
+import socket from "../../utils/socket";
 import io from "socket.io-client";
 
 import ZapItem from "../../components/zap/ZapItem";
 import ZapEditForm from "../../components/zap/ZapEditForm";
 import { editZapAddSlice } from "../../redux/slices/edit";
+import { useRef } from "react";
 
 const LogisticWork = () => {
-  const socket = useRef();
+  // const socket = useRef();
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.auth.data);
   const groups = useSelector((state) => state.zap.zap.groups);
@@ -35,9 +36,6 @@ const LogisticWork = () => {
   const [myZap, setMyZap] = useState(null);
   const zapAddSlice = useSelector((state) => state.edit.zapAddSlice);
 
-  useEffect(() => {
-    socket.current = io("http://192.168.5.180:8800");
-  }, []);
   const showAddZap = () => {
     setAddZap((value) => !value);
   };

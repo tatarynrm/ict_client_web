@@ -4,20 +4,17 @@ import { CgClose } from "react-icons/cg";
 import axios from "../../utils/axios";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchComments } from "../../redux/slices/comments";
-// import socket from "../../utils/socket";
+import socket from "../../utils/socket";
 
 import { fetchZap } from "../../redux/slices/zap";
-import { io } from "socket.io-client";
+
 const ZapComments = ({ showComments, selectedZap }) => {
-  const socket = useRef();
   const [comment, setComment] = useState("");
   const comments = useSelector((state) => state.comments.comments.items);
   const userData = useSelector((state) => state.auth.data);
   const dispatch = useDispatch();
   const bottomRef = useRef();
-  useEffect(() => {
-    socket.current = io("http://192.168.1.33:5002");
-  }, []);
+
   const addComment = async (e) => {
     e.preventDefault();
     try {
@@ -28,12 +25,12 @@ const ZapComments = ({ showComments, selectedZap }) => {
       });
       if (data.status === 200) {
         setComment("");
-        socket.current.emit("newComment", {
+        socket.emit("newComment", {
           pKodAuthor: userData.KOD,
           pKodZap: selectedZap.KOD,
           pComment: comment,
         });
-        socket.current.on("showNewZap", (data) => {
+        socket.on("showNewZap", (data) => {
           if (data) {
             dispatch(fetchZap(userData && userData.KOD));
           }
@@ -53,12 +50,12 @@ const ZapComments = ({ showComments, selectedZap }) => {
         });
         if (data.status === 200) {
           setComment("");
-          socket.current.emit("newComment", {
+          socket.emit("newComment", {
             pKodAuthor: userData.KOD,
             pKodZap: selectedZap.KOD,
             pComment: comment,
           });
-          socket.current.on("showNewZap", (data) => {
+          socket.on("showNewZap", (data) => {
             if (data) {
               dispatch(fetchZap(userData && userData.KOD));
             }
@@ -68,7 +65,7 @@ const ZapComments = ({ showComments, selectedZap }) => {
     } catch (error) {}
   };
   useEffect(() => {
-    socket.current.on("showNewComment", (data) => {
+    socket.on("showNewComment", (data) => {
       dispatch(fetchComments(data.pKodZap));
     });
   }, []);

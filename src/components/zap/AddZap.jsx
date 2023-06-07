@@ -4,21 +4,17 @@ import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "../../utils/axios";
 import { fetchZap, addZap } from "../../redux/slices/zap";
-// import socket from "../../utils/socket";
+import socket from "../../utils/socket";
 import { beep } from "../../helpers/audio";
 import { editZapAddSlice } from "../../redux/slices/edit";
-import { io } from "socket.io-client";
+// import { io } from "socket.io-client";
 const AddZap = ({ selectedGroup, showAddZap }) => {
-  const socket = useRef();
   const userData = useSelector((state) => state.auth.data);
   const [zav, setZav] = useState("");
   const [rozv, setRozv] = useState("");
   const [zapText, setZapText] = useState("");
   const [zapType, setZapType] = useState(null);
   const dispatch = useDispatch();
-  useEffect(() => {
-    socket.current = io("ws://192.168.5.180:8800");
-  }, []);
   const handleSubmitAddZap = async (e) => {
     e.preventDefault();
     const object = {
@@ -34,8 +30,8 @@ const AddZap = ({ selectedGroup, showAddZap }) => {
       const data = await axios.post("/zap/add", object);
       if (data.status === 200) {
         dispatch(addZap(object));
-        socket.current.emit("newZap", object);
-        socket.current.on("showNewZap", (data) => {
+        socket.emit("newZap", object);
+        socket.on("showNewZap", (data) => {
           if (data) {
             dispatch(fetchZap(userData.KOD));
           }
@@ -53,7 +49,7 @@ const AddZap = ({ selectedGroup, showAddZap }) => {
   };
 
   useEffect(() => {
-    socket.current.on("showNewZap", (data) => {
+    socket.on("showNewZap", (data) => {
       if (data) {
         dispatch(fetchZap(userData && userData.KOD));
       }
