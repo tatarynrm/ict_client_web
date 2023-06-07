@@ -22,10 +22,9 @@ import { fetchGroups, fetchZap } from "./redux/slices/zap";
 import { editZap } from "./redux/slices/edit";
 import ZapEditForm from "./components/zap/ZapEditForm";
 import { io } from "socket.io-client";
-// import socket from "./utils/socket";
+import socket from "./utils/socket";
 
 function App() {
-  // const socket = useRef(io("http://192.168.5.180:8800"));
   const dispatch = useDispatch();
   const isAuth = useSelector(selectIsAuth);
   const token = window.localStorage.getItem("token");
@@ -44,11 +43,11 @@ function App() {
         <Route exact path="/login" element={<Login />} />
         <Route element={<PrivateRoute />}>
           <Route path="/" element={<Home />} />
-          <Route path="/workers" element={<Workers />} />
-          <Route path={`/workers/:id`} element={<Worker />} />
-          <Route path={`/chat`} element={<Chat />} />
-          <Route path={`/transportation`} element={<Transportation />} />
-          <Route path={`/carriers`} element={<Carriers />} />
+          {/* <Route path="/workers" element={<Workers />} /> */}
+          {/* <Route path={`/workers/:id`} element={<Worker />} /> */}
+          {/* <Route path={`/chat`} element={<Chat />} /> */}
+          {/* <Route path={`/transportation`} element={<Transportation />} /> */}
+          {/* <Route path={`/carriers`} element={<Carriers />} /> */}
           <Route path={`/logistic-work`} element={<LogisticWork />} />
           <Route
             path={`/current-transportation`}
