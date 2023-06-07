@@ -47,16 +47,16 @@ function App() {
           {/* <Route path={`/workers/:id`} element={<Worker />} /> */}
           {/* <Route path={`/chat`} element={<Chat />} /> */}
           {/* <Route path={`/transportation`} element={<Transportation />} /> */}
-          {/* <Route path={`/carriers`} element={<Carriers />} /> */}
+          <Route path={`/carriers`} element={<Carriers />} />
           <Route path={`/logistic-work`} element={<LogisticWork />} />
-          <Route
+          {/* <Route
             path={`/current-transportation`}
             element={<CurrentTransportation />}
-          />
-          <Route
+          /> */}
+          {/* <Route
             path={`/current-transportation/:id`}
             element={<CurrentTransportationItem />}
-          />
+          /> */}
         </Route>
         <Route path="*" exact={true} element={<DoesntExist />} />
       </Routes>
