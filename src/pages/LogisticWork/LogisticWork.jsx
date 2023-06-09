@@ -44,14 +44,14 @@ const LogisticWork = () => {
   const showAddZap = () => {
     setAddZap((value) => !value);
   };
-  useEffect(() => {
-    userData &&
-      socket.on("showNewZap", (data) => {
-        if (data) {
-          dispatch(fetchZap(userData.KOD));
-        }
-      });
-  }, [socket, zap, userData]);
+  // useEffect(() => {
+  //   userData &&
+  //     socket.on("showNewZap", (data) => {
+  //       if (data) {
+  //         dispatch(fetchZap(userData.KOD));
+  //       }
+  //     });
+  // }, [socket, zap, userData]);
   useEffect(() => {
     socket.emit("newUser", userData?.KOD);
   }, []);
@@ -60,7 +60,6 @@ const LogisticWork = () => {
       dispatch(changeCommentsCount(data.pKodZap));
     });
   }, []);
-  useEffect(() => {}, [groups]);
   const showComments = async (item) => {
     setCommentsClass((value) => !value);
     setSelectedZap(item);
@@ -82,16 +81,7 @@ const LogisticWork = () => {
       setSelectedGroup(11);
     }
   }, []);
-  // useEffect(() => {
-  //   socket.on("showNewZap", (data) => {
-  //     if (data) {
-  //       dispatch(fetchZap(userData?.KOD));
-  //     }
-  //   });
-  // }, [socket]);
-  useEffect(() => {
-    socket.on("showNewComment", (data) => {});
-  }, [zap]);
+
   return (
     <div className="logistic logistic__work container">
       <div className="logistic__work-nav">

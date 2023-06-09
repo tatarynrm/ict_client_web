@@ -24,18 +24,36 @@ const AddZap = ({ selectedGroup, showAddZap }) => {
       pZav: zav.label,
       pRozv: rozv.label,
       pZapText: zapText,
+      PIP: userData.PIP,
     };
     if ((zav !== "" || rozv !== "" || zapType === null, zapText === "")) {
       alert("Заповніть усіполя");
     } else {
       const data = await axios.post("/zap/add", object);
       if (data.status === 200) {
-        dispatch(addZap(object));
+        // dispatch(addZap(object));
+        const dataKod = data.data.outBinds.pKodZap;
+        console.log(dataKod);
         socket.emit("newZap", object);
         socket.on("showNewZap", (data) => {
           if (data) {
             // dispatch(fetchZap(userData?.KOD));
-            dispatch(addZap(object));
+            dispatch(
+              addZap({
+                DAT: Date.now(),
+                ZAPTEXT: data.pZapText,
+                KOD: dataKod,
+                PIP: userData.PIP,
+                ZAV: data.pZav,
+                ROZV: data.pRozv,
+                KOD_GROUP: data.pKodGroup,
+                KOD_OS: data.pKodAuthor,
+                COUNTNEWCOMM: 0,
+                COUNTCOMM: 0,
+                ISNEW: 1,
+                STATUS: 0,
+              })
+            );
           }
         });
         dispatch(editZapAddSlice());
@@ -49,14 +67,6 @@ const AddZap = ({ selectedGroup, showAddZap }) => {
       console.log(error);
     }
   };
-  useEffect(() => {}, [zap]);
-  // useEffect(() => {
-  //   socket.on("showNewZap", (data) => {
-  //     if (data) {
-  //       dispatch(fetchZap(userData && userData.KOD));
-  //     }
-  //   });
-  // }, []);
 
   return (
     <form onSubmit={handleSubmitAddZap} className="add__zap">

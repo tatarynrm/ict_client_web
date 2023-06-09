@@ -31,9 +31,6 @@ export const fetchGroups = createAsyncThunk(
     try {
       const data = await axios.post(`/zap/groups`, { kod: kod });
       if (data.status === 200) {
-        console.log("====================================");
-        console.log(data);
-        console.log("====================================");
         return data.data;
       }
     } catch (error) {

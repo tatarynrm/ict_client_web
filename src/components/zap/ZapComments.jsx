@@ -66,10 +66,10 @@ const ZapComments = ({ showComments, selectedZap }) => {
           KOD_ZAP: data.pKodZap,
           PRIM: data.pComment,
           PIP: data.PIP,
-          DAT: Date.now(),
+          DAT: Date.now().toISOString(),
         })
       );
-      dispatch(changeCommentsCount(data.pKodZap));
+      // dispatch(changeCommentsCount(data.pKodZap));
     });
   }, []);
 
