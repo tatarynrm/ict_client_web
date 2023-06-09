@@ -157,6 +157,20 @@
 .comments__tooltip {
   cursor: help;
 }
+
+.new__comments {
+  background-color: red;
+  position: absolute;
+  top: -10px;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
 @media (max-width: 1350px) {
   .zap__list {
     grid-template-columns: repeat(3, 1fr);

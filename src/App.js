@@ -29,9 +29,9 @@ function App() {
   const isAuth = useSelector(selectIsAuth);
   const token = window.localStorage.getItem("token");
   const userData = useSelector((state) => state.auth.data);
-  useEffect(() => {
-    dispatch(fetchActiveUsers());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(fetchActiveUsers());
+  // }, []);
   useEffect(() => {
     dispatch(fetchAuthMe());
   }, []);

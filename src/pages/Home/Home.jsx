@@ -3,7 +3,7 @@ import axios from "../../utils/axios";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Bar, Doughnut, Pie } from "react-chartjs-2";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCargos } from "../../redux/slices/cargos";
+// import { fetchCargos } from "../../redux/slices/cargos";
 import socket from "../../utils/socket";
 import moment from "moment";
 import "moment/locale/uk";
@@ -42,12 +42,11 @@ const Home = () => {
   const startOfMonth = moment().startOf("month").format("DD.MM.YYYY");
   const endOfMonth = moment().endOf("month").format("DD.MM.YYYY");
   const userData = useSelector((state) => state.auth.data);
-  const { cargos } = useSelector((state) => state.cargos);
+  // const { cargos } = useSelector((state) => state.cargos);
   const dispatch = useDispatch();
-  // const socket = useRef(io("http://192.168.5.180:8800"));
-  useEffect(() => {
-    dispatch(fetchCargos());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(fetchCargos());
+  // }, []);
   useEffect(() => {
     userData && socket.emit("newUser", userData.KOD);
   }, [userData]);
@@ -65,7 +64,11 @@ const Home = () => {
           }}
           className="chart__marzh"
         >
-          <Doughnut data={data} />
+          <h1>
+            Доброго дня {userData?.IMJA ? userData?.IMJA : "Користувач"}. <br />{" "}
+            Перейдіть на вкладку завантаження
+          </h1>
+          {/* <Doughnut data={data} /> */}
         </div>
       </div>
     </div>

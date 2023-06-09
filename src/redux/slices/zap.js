@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
 import axios from "../../utils/axios";
 
 export const fetchZap = createAsyncThunk(
@@ -60,6 +60,14 @@ const zapSlice = createSlice({
     addZap: (state, action) => {
       state.zap.items = [...state.zap.items, action.payload];
     },
+    changeCommentsCount: (state, action) => {
+      const id = action.payload;
+      const counterComm = state.zap.items.find((item) => item.KOD === id);
+      if (counterComm) {
+        counterComm.COUNTCOMM += 1;
+      }
+      state.zap.items = [...state.zap.items];
+    },
   },
   extraReducers: {
     [fetchZap.pending]: (state) => {
@@ -100,5 +108,5 @@ const zapSlice = createSlice({
     },
   },
 });
-export const { addZap } = zapSlice.actions;
+export const { addZap, changeCommentsCount } = zapSlice.actions;
 export const zapReducer = zapSlice.reducer;

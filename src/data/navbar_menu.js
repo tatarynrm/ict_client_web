@@ -8,7 +8,7 @@ import {
 } from "react-icons/fc";
 
 export const navbar_menu = [
-  { label: "Чат", link: "/chat", icon: <FcAssistant /> },
+  // { label: "Чат", link: "/chat", icon: <FcAssistant /> },
   {
     label: "Завантаження",
     link: "/logistic-work",
@@ -20,15 +20,15 @@ export const navbar_menu = [
     //   { label: "Запит ціни", link: "/transportation-price" },
     // ],
   },
-  {
-    label: "Експедиція",
-    icon: <FcSalesPerformance />,
-    submenu: [
-      { label: "Перевезення актуальні", link: "/transportation" },
-      { label: "Перевезення закриті", link: "/closed-transportation" },
-      { label: "Необхідно провести номери", link: "/transport-numbers" },
-    ],
-  },
+  // {
+  //   label: "Експедиція",
+  //   icon: <FcSalesPerformance />,
+  //   submenu: [
+  //     { label: "Перевезення актуальні", link: "/transportation" },
+  //     { label: "Перевезення закриті", link: "/closed-transportation" },
+  //     { label: "Необхідно провести номери", link: "/transport-numbers" },
+  //   ],
+  // },
   {
     label: "Контрагенти",
     link: "/carriers",
@@ -39,5 +39,5 @@ export const navbar_menu = [
     //   { label: "Експедиції", link: "/expeditions" },
     // ],
   },
-  { label: "Працівники", link: "/workers", icon: <FcBusinessman /> },
+  // { label: "Працівники", link: "/workers", icon: <FcBusinessman /> },
 ];

@@ -36,6 +36,9 @@ const ZapItem = ({ item, showComments, showAddZap }) => {
             )}
 
             <span>{item.COUNTCOMM <= 0 ? null : item.COUNTCOMM}</span>
+            {item.COUNTNEWCOMM <= 0 ? null : (
+              <span className="new__comments">{item.COUNTNEWCOMM}</span>
+            )}
           </div>
         </div>
         <div className="zap__author-time">{`${moment(item.DAT)

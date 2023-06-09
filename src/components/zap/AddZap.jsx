@@ -9,6 +9,7 @@ import { beep } from "../../helpers/audio";
 import { editZapAddSlice } from "../../redux/slices/edit";
 // import { io } from "socket.io-client";
 const AddZap = ({ selectedGroup, showAddZap }) => {
+  const zap = useSelector((state) => state.zap.zap.items);
   const userData = useSelector((state) => state.auth.data);
   const [zav, setZav] = useState("");
   const [rozv, setRozv] = useState("");
@@ -33,7 +34,8 @@ const AddZap = ({ selectedGroup, showAddZap }) => {
         socket.emit("newZap", object);
         socket.on("showNewZap", (data) => {
           if (data) {
-            dispatch(fetchZap(userData.KOD));
+            // dispatch(fetchZap(userData?.KOD));
+            dispatch(addZap(object));
           }
         });
         dispatch(editZapAddSlice());
@@ -47,14 +49,14 @@ const AddZap = ({ selectedGroup, showAddZap }) => {
       console.log(error);
     }
   };
-
-  useEffect(() => {
-    socket.on("showNewZap", (data) => {
-      if (data) {
-        dispatch(fetchZap(userData && userData.KOD));
-      }
-    });
-  }, [socket]);
+  useEffect(() => {}, [zap]);
+  // useEffect(() => {
+  //   socket.on("showNewZap", (data) => {
+  //     if (data) {
+  //       dispatch(fetchZap(userData && userData.KOD));
+  //     }
+  //   });
+  // }, []);
 
   return (
     <form onSubmit={handleSubmitAddZap} className="add__zap">
