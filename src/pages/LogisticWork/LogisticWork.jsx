@@ -38,7 +38,6 @@ const LogisticWork = () => {
   const comments = useSelector((state) => state.comments.comments);
   const [myZap, setMyZap] = useState(null);
   const zapAddSlice = useSelector((state) => state.edit.zapAddSlice);
-
   const showAddZap = () => {
     setAddZap((value) => !value);
   };
@@ -138,7 +137,7 @@ const LogisticWork = () => {
             onClick={() => setSelectedGroup(userData.KOD)}
             className="normal"
           >
-            Мої
+            Усі
           </button>
         </div> */}
       </div>

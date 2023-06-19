@@ -7,7 +7,8 @@ import { addCommentRedux, fetchComments } from "../../redux/slices/comments";
 import socket from "../../utils/socket";
 import { changeCommentsCount, fetchZap } from "../../redux/slices/zap";
 import { beep, beepSend } from "../../helpers/audio";
-
+import { RxDotsVertical } from "react-icons/rx";
+import toTimestamp from "../../helpers/functions";
 const ZapComments = ({ showComments, selectedZap }) => {
   const [comment, setComment] = useState("");
   const comments = useSelector((state) => state.comments.comments.items);
@@ -16,7 +17,7 @@ const ZapComments = ({ showComments, selectedZap }) => {
   const dispatch = useDispatch();
   const bottomRef = useRef();
   const [zapFetch, setZapFetch] = useState(null);
-
+  const commentsToShow = [...comments];
   const addComment = async (e) => {
     e.preventDefault();
     try {
@@ -105,23 +106,30 @@ const ZapComments = ({ showComments, selectedZap }) => {
         </div>
         <div className="comments__item-block">
           {comments.length > 0 ? (
-            comments.map((item, idx) => {
-              return (
-                <div
-                  key={idx}
-                  ref={bottomRef}
-                  className={
-                    item.KOD_OS === userData.KOD
-                      ? "manager__comment own"
-                      : "manager__comment"
-                  }
-                >
-                  <span>{item.KOD_OS === userData.KOD ? "" : item.PIP}</span>
-                  {"  "}
-                  <span>{item.PRIM}</span>
-                </div>
-              );
-            })
+            commentsToShow
+              .sort((a, b) => a.KOD - b.KOD)
+              .map((item, idx) => {
+                return (
+                  <div
+                    key={idx}
+                    ref={bottomRef}
+                    className={
+                      item.KOD_OS === userData.KOD
+                        ? "manager__comment own"
+                        : "manager__comment"
+                    }
+                  >
+                    <span>{item.KOD_OS === userData.KOD ? "" : item.PIP}</span>
+                    {"  "}
+                    <span>{item.PRIM}</span>
+                    {item.KOD_OS === userData.KOD ? (
+                      <div className="comments__edit">
+                        <RxDotsVertical />
+                      </div>
+                    ) : null}
+                  </div>
+                );
+              })
           ) : (
             <h2>Коментарів немає</h2>
           )}
