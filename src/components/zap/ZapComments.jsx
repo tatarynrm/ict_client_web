@@ -20,26 +20,29 @@ const ZapComments = ({ showComments, selectedZap }) => {
   const addComment = async (e) => {
     e.preventDefault();
     try {
-      const data = await axios.post(`/comments/add`, {
-        pKodAuthor: userData?.KOD,
-        pKodZap: selectedZap.KOD,
-        pComment: comment,
-      });
-      setComment("");
-      beep();
-      socket.emit("newComment", {
-        PIP: userData?.PIP,
-        pKodAuthor: userData?.KOD,
-        pKodZap: selectedZap?.KOD,
-        pComment: comment,
-      });
+      if (comment.length >= 3) {
+        const data = await axios.post(`/comments/add`, {
+          pKodAuthor: userData?.KOD,
+          pKodZap: selectedZap.KOD,
+          pComment: comment,
+        });
+        if (data.status === 200) {
+          setComment("");
+          socket.emit("newComment", {
+            PIP: userData?.PIP,
+            pKodAuthor: userData?.KOD,
+            pKodZap: selectedZap?.KOD,
+            pComment: comment,
+          });
+        }
+      }
     } catch (error) {
       console.log(error);
     }
   };
   const handleKeyDown = async (e) => {
     try {
-      if (e.key === "Enter") {
+      if ((e.key === "Enter") & (comment.length >= 3)) {
         const data = await axios.post(`/comments/add`, {
           pKodAuthor: userData?.KOD,
           pKodZap: selectedZap?.KOD,
@@ -47,7 +50,6 @@ const ZapComments = ({ showComments, selectedZap }) => {
         });
         if (data.status === 200 && userData) {
           setComment("");
-          beep();
           socket.emit("newComment", {
             PIP: userData?.PIP,
             pKodAuthor: userData?.KOD,
@@ -66,7 +68,7 @@ const ZapComments = ({ showComments, selectedZap }) => {
           KOD_ZAP: data.pKodZap,
           PRIM: data.pComment,
           PIP: data.PIP,
-          DAT: Date.now().toISOString(),
+          DAT: Date.now(),
         })
       );
       // dispatch(changeCommentsCount(data.pKodZap));

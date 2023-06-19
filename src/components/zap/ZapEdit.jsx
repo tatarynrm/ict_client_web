@@ -61,10 +61,10 @@ const ZapEdit = ({ item, showAddZap, setZapMenu }) => {
         <AiFillDelete />
         <span>Видалити</span>
       </i>
-      <i onClick={editCurrentZap} className="zap__edit-block  zap__edit-edit">
+      {/* <i onClick={editCurrentZap} className="zap__edit-block  zap__edit-edit">
         <AiFillEdit />
         <span>Редагувати</span>
-      </i>
+      </i> */}
     </div>
   );
 };

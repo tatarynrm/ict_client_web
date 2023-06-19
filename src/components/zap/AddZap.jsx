@@ -3,7 +3,7 @@ import "./AddZap.scss";
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "../../utils/axios";
-import { fetchZap, addZap } from "../../redux/slices/zap";
+import { fetchZap, addReduxZap } from "../../redux/slices/zap";
 import socket from "../../utils/socket";
 import { beep } from "../../helpers/audio";
 import { editZapAddSlice } from "../../redux/slices/edit";
@@ -26,48 +26,25 @@ const AddZap = ({ selectedGroup, showAddZap }) => {
       pZapText: zapText,
       PIP: userData.PIP,
     };
-    if ((zav !== "" || rozv !== "" || zapType === null, zapText === "")) {
-      alert("Заповніть усіполя");
-    } else {
-      const data = await axios.post("/zap/add", object);
-      if (data.status === 200) {
-        // dispatch(addZap(object));
-        const dataKod = data.data.outBinds.pKodZap;
-        console.log(dataKod);
-        socket.emit("newZap", object);
-        socket.on("showNewZap", (data) => {
-          if (data) {
-            // dispatch(fetchZap(userData?.KOD));
-            dispatch(
-              addZap({
-                DAT: Date.now(),
-                ZAPTEXT: data.pZapText,
-                KOD: dataKod,
-                PIP: userData.PIP,
-                ZAV: data.pZav,
-                ROZV: data.pRozv,
-                KOD_GROUP: data.pKodGroup,
-                KOD_OS: data.pKodAuthor,
-                COUNTNEWCOMM: 0,
-                COUNTCOMM: 0,
-                ISNEW: 1,
-                STATUS: 0,
-              })
-            );
-          }
-        });
-        dispatch(editZapAddSlice());
-      } else {
-        alert("Виникла якась помилка");
-      }
-    }
-
     try {
+      if ((zav !== "" || rozv !== "" || zapType === null, zapText === "")) {
+        alert("Заповніть усіполя");
+      } else {
+        const data = await axios.post("/zap/add", object);
+        if (data.status === 200) {
+          const dataKod = data.data.outBinds.pKodZap;
+          socket.emit("newZap", { ...object, ZAP_KOD: dataKod });
+          showAddZap();
+        } else {
+          alert("Виникла якась помилка");
+        }
+      }
     } catch (error) {
       console.log(error);
     }
   };
 
+  useEffect(() => {}, [zap]);
   return (
     <form onSubmit={handleSubmitAddZap} className="add__zap">
       <div className="form__control">

@@ -16,14 +16,12 @@ import {
 } from "../../redux/slices/zap";
 
 import socket from "../../utils/socket";
-import io from "socket.io-client";
-
 import ZapItem from "../../components/zap/ZapItem";
 import ZapEditForm from "../../components/zap/ZapEditForm";
 import { editZapAddSlice } from "../../redux/slices/edit";
 import { useRef } from "react";
 import axios from "../../utils/axios";
-
+import { addReduxZap } from "../../redux/slices/zap";
 const LogisticWork = () => {
   const [searchFilter, setSearchFilter] = useState("");
   const dispatch = useDispatch();
@@ -44,14 +42,6 @@ const LogisticWork = () => {
   const showAddZap = () => {
     setAddZap((value) => !value);
   };
-  // useEffect(() => {
-  //   userData &&
-  //     socket.on("showNewZap", (data) => {
-  //       if (data) {
-  //         dispatch(fetchZap(userData.KOD));
-  //       }
-  //     });
-  // }, [socket, zap, userData]);
   useEffect(() => {
     socket.emit("newUser", userData?.KOD);
   }, []);
@@ -60,6 +50,28 @@ const LogisticWork = () => {
       dispatch(changeCommentsCount(data.pKodZap));
     });
   }, []);
+  useEffect(() => {
+    const date = new Date();
+    date.toISOString();
+    socket.on("showNewZap", (data) => {
+      dispatch(
+        addReduxZap({
+          DAT: date,
+          KOD_GROUP: data.pKodGroup,
+          KOD_OS: data.pKodAuthor,
+          ZAV: data.pZav,
+          ROZV: data.pRozv,
+          ZAPTEXT: data.pZapText,
+          KOD: data.ZAPKOD,
+          PIP: data.PIP,
+          COUNTCOMM: 0,
+          COUNTNEWCOMM: 0,
+          ISNEW: 1,
+          KOD: data.ZAP_KOD,
+        })
+      );
+    });
+  }, [socket]);
   const showComments = async (item) => {
     setCommentsClass((value) => !value);
     setSelectedZap(item);
@@ -121,14 +133,14 @@ const LogisticWork = () => {
               );
             })
           : null}
-        <div className="nav">
+        {/* <div className="nav">
           <button
             onClick={() => setSelectedGroup(userData.KOD)}
             className="normal"
           >
             Мої
           </button>
-        </div>
+        </div> */}
       </div>
       {zapAddSlice ? (
         <AddZap showAddZap={showAddZap} selectedGroup={selectedGroup} />

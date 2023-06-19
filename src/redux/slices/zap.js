@@ -57,7 +57,7 @@ const zapSlice = createSlice({
   name: "zap",
   initialState,
   reducers: {
-    addZap: (state, action) => {
+    addReduxZap: (state, action) => {
       state.zap.items = [...state.zap.items, action.payload];
     },
     changeCommentsCount: (state, action) => {
@@ -108,5 +108,5 @@ const zapSlice = createSlice({
     },
   },
 });
-export const { addZap, changeCommentsCount } = zapSlice.actions;
+export const { addReduxZap, changeCommentsCount } = zapSlice.actions;
 export const zapReducer = zapSlice.reducer;
