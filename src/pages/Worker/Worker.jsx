@@ -5,8 +5,10 @@ import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { fetchUserById } from "../../redux/slices/users";
 import Loader from "../../components/loader/Loader";
 import axios from "../../utils/axios";
-
+import moment from "moment";
+import "moment/locale/uk";
 const Worker = () => {
+  const birthDate = moment();
   const { users } = useSelector((state) => state.users);
   const { id } = useParams();
   const [zas, setZas] = useState([]);
@@ -43,6 +45,8 @@ const Worker = () => {
       {users.items.length < 1 ? null : (
         <div className={`worker__${id} worker__manager`}>
           <h3>{users.items.PIPFULL}</h3>
+
+          {/* {moment(users.items.NARDAT).format("ll")} */}
           <p>Дата народження: {users.items.NARDAT}</p>
           <p>{users.items.DB_P}</p>
           <p>Працює з {users.items.WORKDAT}</p>

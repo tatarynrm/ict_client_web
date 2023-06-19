@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import "./Home.scss";
 import axios from "../../utils/axios";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Bar, Doughnut, Pie } from "react-chartjs-2";
@@ -55,7 +56,7 @@ const Home = () => {
   return (
     <div className="home container">
       {/* {moment("02-06-2023").add(3, "days").calendar()} */}
-      <div style={{ marginTop: "20px" }} className="home__inner">
+      <div className="home__inner">
         <div
           style={{
             width: "40%",
@@ -63,12 +64,13 @@ const Home = () => {
             backgroundColor: "rgba(0,0,0,0.02)",
             borderRadius: "10px",
           }}
-          className="chart__marzh"
         >
           <h1>
             Доброго дня {userData?.IMJA ? userData?.IMJA : "Користувач"}. <br />{" "}
             Перейдіть на вкладку завантаження
           </h1>
+        </div>
+        <div className="news">
           <code>
             Усім привіт. Запускаємо в тестовий режим сайт,для внутрішньої роботи
             менеджерів з логістики. Посилання для входу{" "}
@@ -94,10 +96,15 @@ const Home = () => {
             <br /> (Доступ до сайту буду зараз надавати кожному менеджеру
             окремо, це займе деякий час)
           </code>
-          <ReactPlayer controls={true} url="https://youtu.be/S9VN2BenU4M" />
-          {/* <Doughnut data={data} /> */}
+          <ReactPlayer
+            width="100%"
+            height="100%"
+            controls={true}
+            url="https://youtu.be/S9VN2BenU4M"
+          />
         </div>
       </div>
+      {/* <Doughnut data={data} /> */}
     </div>
   );
 };

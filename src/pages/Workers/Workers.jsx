@@ -14,7 +14,8 @@ import {
   fetchUsers,
 } from "../../redux/slices/users";
 import Loader from "../../components/loader/Loader";
-
+import moment from "moment";
+import "moment/locale/uk";
 const Workers = () => {
   const location = useLocation();
   const auth = useSelector((state) => state.auth.data);
@@ -58,10 +59,10 @@ const Workers = () => {
       <div className="workers__list container">
         <div
           className={
-            auth?.ISDIR !== 0 ? "search__input.active" : "search__input"
+            auth?.ISDIR === 0 ? "search__input.active" : "search__input"
           }
         >
-          {auth?.ISDIR !== 0 ? null : (
+          {auth?.ISDIR === 0 ? null : (
             <>
               <button onClick={showActiveUsers}>Діючі</button>
               <button onClick={showFiredUsers}>Звільнені</button>

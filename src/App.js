@@ -40,8 +40,12 @@ function App() {
         <Route exact path="/login" element={<Login />} />
         <Route element={<PrivateRoute />}>
           <Route path="/" element={<Home />} />
-          {/* <Route path="/workers" element={<Workers />} /> */}
-          {/* <Route path={`/workers/:id`} element={<Worker />} /> */}
+          {/* {userData?.ISDIR === 1 ? (
+            <> */}
+          <Route path="/workers" element={<Workers />} />
+          <Route path={`/workers/:id`} element={<Worker />} />{" "}
+          {/* </>
+          ) : null} */}
           {/* <Route path={`/chat`} element={<Chat />} /> */}
           {/* <Route path={`/transportation`} element={<Transportation />} /> */}
           <Route path={`/carriers`} element={<Carriers />} />
