@@ -94,7 +94,7 @@ const Home = () => {
             <br /> (Доступ до сайту буду зараз надавати кожному менеджеру
             окремо, це займе деякий час)
           </code>
-          <ReactPlayer url="https://youtu.be/S9VN2BenU4M" />
+          <ReactPlayer controls={true} url="https://youtu.be/S9VN2BenU4M" />
           {/* <Doughnut data={data} /> */}
         </div>
       </div>
