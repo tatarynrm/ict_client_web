@@ -58,12 +58,12 @@ const Home = () => {
       {/* {moment("02-06-2023").add(3, "days").calendar()} */}
       <div className="home__inner">
         <div
-          style={{
-            width: "40%",
-            height: "80vh",
-            backgroundColor: "rgba(0,0,0,0.02)",
-            borderRadius: "10px",
-          }}
+        // style={{
+        //   width: "40%",
+        //   height: "80vh",
+        //   backgroundColor: "rgba(0,0,0,0.02)",
+        //   borderRadius: "10px",
+        // }}
         >
           <h1>
             Доброго дня {userData?.IMJA ? userData?.IMJA : "Користувач"}. <br />{" "}
@@ -96,12 +96,14 @@ const Home = () => {
             <br /> (Доступ до сайту буду зараз надавати кожному менеджеру
             окремо, це займе деякий час)
           </code>
-          <ReactPlayer
-            width="100%"
-            height="100%"
-            controls={true}
-            url="https://youtu.be/S9VN2BenU4M"
-          />
+          <div className="video">
+            <ReactPlayer
+              width="100%"
+              height="100%"
+              controls={true}
+              url="https://youtu.be/S9VN2BenU4M"
+            />
+          </div>
         </div>
       </div>
       {/* <Doughnut data={data} /> */}

@@ -55,12 +55,6 @@
 }
 
 @media screen and (max-width: 1200px) {
-  .header__avatar {
-    // display: none;
-  }
-}
-
-@media screen and (max-width: 1200px) {
   .time {
     display: none;
     // display: block;
@@ -112,7 +106,7 @@
       // display: none;
     }
     &__menu {
-      width: 90%;
+      // width: 90%;
       margin: 0 auto;
       height: 8vh;
       display: none;
