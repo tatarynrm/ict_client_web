@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./ZapComments.scss";
 import { CgClose } from "react-icons/cg";
 import axios from "../../utils/axios";
@@ -9,6 +9,8 @@ import { changeCommentsCount, fetchZap } from "../../redux/slices/zap";
 import { beep, beepSend } from "../../helpers/audio";
 import { RxDotsVertical } from "react-icons/rx";
 import toTimestamp from "../../helpers/functions";
+import CommentItem from "./CommentItem";
+import messagesGif from "../../assets/messages1gif.gif";
 const ZapComments = ({ showComments, selectedZap }) => {
   const [comment, setComment] = useState("");
   const comments = useSelector((state) => state.comments.comments.items);
@@ -89,7 +91,7 @@ const ZapComments = ({ showComments, selectedZap }) => {
       // inline: "nearest",
     });
     bottomRef.current?.scrollIntoView({ block: "end" });
-  }, [comments]);
+  }, [commentsToShow]);
 
   return (
     <div className={"zap__comments-show"}>
@@ -97,12 +99,16 @@ const ZapComments = ({ showComments, selectedZap }) => {
         <CgClose />
       </div>
       <div className="comments__item">
-        <div className="comments__item-author">{selectedZap.PIP}</div>
+        <div className="comments__item-author">Автор: {selectedZap.PIP}</div>
         <div className="comments__item-zap-info">
           <div className="cities">
-            {selectedZap.ZAV} <br /> - <br /> {selectedZap.ROZV}
+            Завантаження: {selectedZap.ZAV} <br /> - <br /> Вивантаження:{" "}
+            {selectedZap.ROZV}
           </div>
-          <div className="zap-text">{selectedZap.ZAPTEXT}</div>
+          <div className="zap-text">
+            Інформація про завантаження: <br />
+            {selectedZap.ZAPTEXT}
+          </div>
         </div>
         <div className="comments__item-block">
           {comments.length > 0 ? (
@@ -110,28 +116,20 @@ const ZapComments = ({ showComments, selectedZap }) => {
               .sort((a, b) => a.KOD - b.KOD)
               .map((item, idx) => {
                 return (
-                  <div
-                    key={idx}
-                    ref={bottomRef}
-                    className={
-                      item.KOD_OS === userData.KOD
-                        ? "manager__comment own"
-                        : "manager__comment"
-                    }
-                  >
-                    <span>{item.KOD_OS === userData.KOD ? "" : item.PIP}</span>
-                    {"  "}
-                    <span>{item.PRIM}</span>
-                    {item.KOD_OS === userData.KOD ? (
-                      <div className="comments__edit">
-                        <RxDotsVertical />
-                      </div>
-                    ) : null}
-                  </div>
+                  <React.Fragment key={idx}>
+                    <CommentItem
+                      ref1={bottomRef}
+                      comments={commentsToShow}
+                      item={item}
+                    />
+                  </React.Fragment>
                 );
               })
           ) : (
-            <h2>Коментарів немає</h2>
+            <div>
+              <h2>Напишіть перший коментар</h2>
+              <img src={messagesGif} alt="messages_gif" />
+            </div>
           )}
         </div>
       </div>

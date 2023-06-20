@@ -15,7 +15,7 @@
 }
 .zap__comments-show {
   position: absolute;
-  width: 400px;
+  width: 500px;
   height: 80vh;
   top: 0;
   right: 0px;
@@ -44,13 +44,17 @@
 
   &-author {
     padding: 0.1rem;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
   }
   &-zap-info {
     .cities {
-      font-size: 14px;
-      // font-weight: bold;
+      font-size: 17px;
+      font-weight: bold;
     }
     .zap-text {
+      margin-top: 10px;
       font-size: 20px;
       font-weight: bold;
       word-break: break-all;
@@ -61,7 +65,7 @@
     margin-top: 20px;
     overflow: hidden;
     overflow-y: scroll;
-    max-height: 60vh;
+    max-height: 50vh;
 
     &::-webkit-scrollbar {
       // display: none;
@@ -141,4 +145,13 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+
+.comment__edit-buttons {
+  position: relative;
+
+  button {
+    position: absolute;
+    // z-index: 9999;
+  }
 }

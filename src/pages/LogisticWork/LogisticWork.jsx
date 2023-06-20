@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchActiveUsers } from "../../redux/slices/users";
 import {
   changeCommentsCount,
+  deleteReduxZap,
   fetchGroups,
   fetchZap,
 } from "../../redux/slices/zap";
@@ -38,6 +39,7 @@ const LogisticWork = () => {
   const comments = useSelector((state) => state.comments.comments);
   const [myZap, setMyZap] = useState(null);
   const zapAddSlice = useSelector((state) => state.edit.zapAddSlice);
+  const [myZapSelect, setMyZapSelect] = useState(false);
   const showAddZap = () => {
     setAddZap((value) => !value);
   };
@@ -92,7 +94,11 @@ const LogisticWork = () => {
       setSelectedGroup(11);
     }
   }, []);
-
+  useEffect(() => {
+    socket.on("deleteZapAllUsers", (data) => {
+      dispatch(deleteReduxZap(data));
+    });
+  }, [socket]);
   return (
     <div className="logistic logistic__work container">
       <div className="logistic__work-nav">
@@ -106,11 +112,29 @@ const LogisticWork = () => {
               border: "none",
               borderBottom: "1px solid rgb(76, 135, 202)",
               outline: "none",
+              width: "100%",
             }}
             type="text"
-            placeholder="Пошук заявок"
+            placeholder="Пошук: місто,прізвище"
           />
         </div>
+        {myZapSelect ? (
+          <button
+            style={{ backgroundColor: "lightcoral" }}
+            onClick={() => setMyZapSelect((value) => !value)}
+            className="normal"
+          >
+            Дивитись усі заявки
+          </button>
+        ) : (
+          <button
+            style={{ backgroundColor: "green", color: "white" }}
+            onClick={() => setMyZapSelect((value) => !value)}
+            className="normal"
+          >
+            Лише мої заявки
+          </button>
+        )}
       </div>
       <div className="logistic__work-nav">
         {groups
@@ -132,14 +156,6 @@ const LogisticWork = () => {
               );
             })
           : null}
-        {/* <div className="nav">
-          <button
-            onClick={() => setSelectedGroup(userData.KOD)}
-            className="normal"
-          >
-            Усі
-          </button>
-        </div> */}
       </div>
       {zapAddSlice ? (
         <AddZap showAddZap={showAddZap} selectedGroup={selectedGroup} />
@@ -155,7 +171,15 @@ const LogisticWork = () => {
                 ? item
                 : item.ZAV.toLowerCase().includes(searchFilter) ||
                     item.ROZV.toLowerCase().includes(searchFilter) ||
-                    item.PIP.toUpperCase().includes(searchFilter);
+                    item.PIP.toUpperCase().includes(searchFilter) ||
+                    item.PIP.toLowerCase().includes(searchFilter);
+            })
+            .filter((item) => {
+              if (myZapSelect) {
+                return item.KOD_OS === userData?.KOD;
+              } else {
+                return item;
+              }
             })
             .sort((a, b) => toTimestamp(b.DAT) - toTimestamp(a.DAT))
             .map((item, idx) => {

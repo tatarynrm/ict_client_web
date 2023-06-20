@@ -68,6 +68,10 @@ const zapSlice = createSlice({
       }
       state.zap.items = [...state.zap.items];
     },
+    deleteReduxZap: (state, action) => {
+      const id = action.payload;
+      state.zap.items = state.zap.items.filter((item) => item.KOD !== id);
+    },
   },
   extraReducers: {
     [fetchZap.pending]: (state) => {
@@ -108,5 +112,6 @@ const zapSlice = createSlice({
     },
   },
 });
-export const { addReduxZap, changeCommentsCount } = zapSlice.actions;
+export const { addReduxZap, deleteReduxZap, changeCommentsCount } =
+  zapSlice.actions;
 export const zapReducer = zapSlice.reducer;
