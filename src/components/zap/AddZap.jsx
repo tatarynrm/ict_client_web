@@ -8,7 +8,7 @@ import socket from "../../utils/socket";
 import { beep } from "../../helpers/audio";
 import { editZapAddSlice } from "../../redux/slices/edit";
 // import { io } from "socket.io-client";
-const AddZap = ({ selectedGroup, showAddZap }) => {
+const AddZap = ({ selectedGroup, showAddZap, setAddZap }) => {
   const zap = useSelector((state) => state.zap.zap.items);
   const userData = useSelector((state) => state.auth.data);
   const [zav, setZav] = useState("");
@@ -34,7 +34,9 @@ const AddZap = ({ selectedGroup, showAddZap }) => {
         if (data.status === 200) {
           const dataKod = data.data.outBinds.pKodZap;
           socket.emit("newZap", { ...object, ZAP_KOD: dataKod });
-          showAddZap();
+          // showAddZap();
+          // setAddZap((value) => !value);
+          dispatch(editZapAddSlice());
         } else {
           alert("Виникла якась помилка");
         }

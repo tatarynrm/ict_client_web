@@ -149,9 +149,18 @@
 
 .comment__edit-buttons {
   position: relative;
+  display: flex;
+  width: 200px;
+  justify-content: space-between;
+  // flex-direction: column;
+  > button {
+    top: 10px;
+    right: 0px;
+    text-decoration: none;
 
-  button {
-    position: absolute;
+    // background-color: red;
+    // bottom: -20px;
+    // left: -20px;
     // z-index: 9999;
   }
 }

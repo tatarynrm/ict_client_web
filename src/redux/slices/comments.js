@@ -31,6 +31,12 @@ const commentsSlice = createSlice({
     addCommentRedux: (state, action) => {
       state.comments.items = [...state.comments.items, action.payload];
     },
+    deleteReduxComments: (state, action) => {
+      const id = action.payload;
+      state.comments.items = state.comments.items.filter(
+        (item) => item.KOD !== id
+      );
+    },
   },
   extraReducers: {
     [fetchComments.pending]: (state) => {
@@ -47,5 +53,5 @@ const commentsSlice = createSlice({
     },
   },
 });
-export const { addCommentRedux } = commentsSlice.actions;
+export const { addCommentRedux, deleteReduxComments } = commentsSlice.actions;
 export const commentsReducer = commentsSlice.reducer;

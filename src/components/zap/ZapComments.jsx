@@ -3,7 +3,11 @@ import "./ZapComments.scss";
 import { CgClose } from "react-icons/cg";
 import axios from "../../utils/axios";
 import { useDispatch, useSelector } from "react-redux";
-import { addCommentRedux, fetchComments } from "../../redux/slices/comments";
+import {
+  addCommentRedux,
+  deleteReduxComments,
+  fetchComments,
+} from "../../redux/slices/comments";
 import socket from "../../utils/socket";
 import { changeCommentsCount, fetchZap } from "../../redux/slices/zap";
 import { beep, beepSend } from "../../helpers/audio";
@@ -77,6 +81,12 @@ const ZapComments = ({ showComments, selectedZap }) => {
       // dispatch(changeCommentsCount(data.pKodZap));
     });
   }, []);
+  useEffect(() => {
+    socket.on("deleteCommAllUsers", (data) => {
+      console.log(data);
+      dispatch(deleteReduxComments(data));
+    });
+  }, [commentsToShow]);
 
   useEffect(() => {
     dispatch(fetchComments(selectedZap.KOD));

@@ -200,7 +200,11 @@ const LogisticWork = () => {
       </div>
 
       {commentsClass ? (
-        <ZapComments showComments={showComments} selectedZap={selectedZap} />
+        <ZapComments
+          setAddZap={setAddZap}
+          showComments={showComments}
+          selectedZap={selectedZap}
+        />
       ) : null}
       <ToastContainer />
     </div>
