@@ -140,6 +140,22 @@ const LogisticWork = () => {
           </button>
         )}
       </div>
+      <div className="zap__rules">
+        <div className="zap__rules-block">
+          <div
+            className="zap__rules-round"
+            style={{ backgroundColor: "#1dcf3b" }}
+          ></div>
+          <span>- Нова заявка на перевезення</span>
+        </div>
+        <div className="zap__rules-block">
+          <div
+            className="zap__rules-round"
+            style={{ backgroundColor: "#ebb099" }}
+          ></div>
+          <span>- Заявка яка має термін життя більший ніж 30хв</span>
+        </div>
+      </div>
       <div className="logistic__work-nav">
         {groups
           ? groups.map((item, idx) => {

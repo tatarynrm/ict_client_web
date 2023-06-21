@@ -14,9 +14,20 @@ const ZapItem = ({ item, showComments, showAddZap, setEditZap }) => {
     e.stopPropagation();
     setZapMenu((val) => !val);
   };
-
+  // console.log("====================================");
+  // console.log(moment(item.DAT).valueOf());
+  // console.log("====================================");
+  console.log(Date.now());
+  console.log(Date.now() - moment(item.DAT).valueOf());
+  const newZapColor = Date.now() - moment(item.DAT).valueOf();
   return (
-    <div onClick={() => showComments(item)} className={`zap zap-${item.KOD}`}>
+    <div
+      style={{
+        backgroundColor: newZapColor <= 1800000 ? "#1dcf3b" : "#ebb099",
+      }}
+      onClick={() => showComments(item)}
+      className={`zap zap-${item.KOD}`}
+    >
       {item.KOD_GROUP === 11 ? (
         <div className="decor__line-div-zap-mizh"></div>
       ) : (
