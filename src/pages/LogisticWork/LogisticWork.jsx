@@ -151,9 +151,16 @@ const LogisticWork = () => {
         <div className="zap__rules-block">
           <div
             className="zap__rules-round"
-            style={{ backgroundColor: "rgb(226, 75, 75)" }}
+            style={{ backgroundColor: "rgb(228, 203, 64)" }}
           ></div>
           <span>- Заявка яка має термін життя більший ніж 30хв</span>
+        </div>
+        <div className="zap__rules-block">
+          <div
+            className="zap__rules-round"
+            style={{ backgroundColor: "rgb(226, 75, 75)" }}
+          ></div>
+          <span>- Заявка яка має термін життя більший ніж 3години</span>
         </div>
       </div>
       <div className="logistic__work-nav">

@@ -29,10 +29,13 @@ const ZapItem = ({ item, showComments, showAddZap, setEditZap }) => {
       className={`zap zap-${item.KOD}`}
     >
       {newZapColor <= 1800000 ? (
-        <div className="decor__line-div-zap-mizh"></div>
+        <div className="decor__line-div-zap-new"></div>
       ) : (
-        <div className="decor__line-div-zap-region"></div>
+        <div className="decor__line-div-zap-30min"></div>
       )}
+      {newZapColor >= 10800000 ? (
+        <div className="decor__line-div-zap-3hour"></div>
+      ) : null}
       <div className="zap__author">
         <div className="zap__author-name">{item.PIP}</div>
         <div className="zap__comments-length">
