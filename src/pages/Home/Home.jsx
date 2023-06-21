@@ -10,6 +10,7 @@ import moment from "moment";
 import "moment/locale/uk";
 import { io } from "socket.io-client";
 import ReactPlayer from "react-player/youtube";
+import docsGIF from "../../assets/docs__.gif";
 ChartJS.register(ArcElement, Tooltip, Legend);
 const data = {
   labels: [
@@ -55,22 +56,18 @@ const Home = () => {
   const now = Date.now();
   return (
     <div className="home container">
-      {/* {moment("02-06-2023").add(3, "days").calendar()} */}
       <div className="home__inner">
-        <div
-        // style={{
-        //   width: "40%",
-        //   height: "80vh",
-        //   backgroundColor: "rgba(0,0,0,0.02)",
-        //   borderRadius: "10px",
-        // }}
-        >
+        <div>
           <h1>
             Доброго дня {userData?.IMJA ? userData?.IMJA : "Користувач"}. <br />{" "}
             Перейдіть на вкладку завантаження
           </h1>
         </div>
         <div className="news">
+          <code>
+            <h2>Добавлено документи 👇👇👇</h2>
+            <img src={docsGIF} alt="" />
+          </code>
           <code>
             Усім привіт. Запускаємо в тестовий режим сайт,для внутрішньої роботи
             менеджерів з логістики. Посилання для входу{" "}
