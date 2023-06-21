@@ -23,6 +23,7 @@ import { editZap } from "./redux/slices/edit";
 import ZapEditForm from "./components/zap/ZapEditForm";
 import { io } from "socket.io-client";
 import socket from "./utils/socket";
+import CompanyFiles from "./pages/CompanyFiles/CompanyFiles";
 
 function App() {
   const dispatch = useDispatch();
@@ -50,6 +51,7 @@ function App() {
           {/* <Route path={`/transportation`} element={<Transportation />} /> */}
           <Route path={`/carriers`} element={<Carriers />} />
           <Route path={`/logistic-work`} element={<LogisticWork />} />
+          <Route path={`/ict-files`} element={<CompanyFiles />} />
           {/* <Route
             path={`/current-transportation`}
             element={<CurrentTransportation />}

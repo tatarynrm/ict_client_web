@@ -5,10 +5,22 @@ import {
   FcConferenceCall,
   FcSalesPerformance,
   FcShipped,
+  FcDocument,
 } from "react-icons/fc";
 
 export const navbar_menu = [
   // { label: "Чат", link: "/chat", icon: <FcAssistant /> },
+  {
+    label: "Документи",
+    link: "/ict-files",
+    icon: <FcDocument />,
+    // submenu: [
+    //   { label: "Актуальні завантаження", link: "/current-transportation" },
+    //   { label: "Тендери", link: "/tenders" },
+    //   { label: "Закриті завантаження", link: "/closed-transportation" },
+    //   { label: "Запит ціни", link: "/transportation-price" },
+    // ],
+  },
   {
     label: "Завантаження",
     link: "/logistic-work",
