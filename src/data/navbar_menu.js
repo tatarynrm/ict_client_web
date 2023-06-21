@@ -40,6 +40,13 @@ export const navbar_menu = [
     icon: <FcBusinessman />,
     isDir: true,
   },
+  {
+    label: "Закриті завантаження",
+    link: "/closed-cargos",
+    icon: <FcShipped />,
+    status: "red",
+    isDir: true,
+  },
 ];
 
 // export const navbar_dir__menu = [

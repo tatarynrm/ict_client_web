@@ -82,11 +82,34 @@
     }
 
     .manager__comment {
+      display: flex;
+      gap: 10px;
+
       position: relative;
       border-radius: 10px;
       padding: 1rem;
       word-wrap: break-word;
       background-color: rgba(255, 255, 255, 0.5);
+
+      &-leftside {
+        // background-color: red;
+        display: flex;
+        flex-direction: column;
+      }
+      .comment__date {
+        position: absolute;
+        bottom: 0;
+        font-size: 14px;
+        color: gray;
+      }
+      .comment__author {
+        font-weight: bold;
+        // color: light;
+      }
+
+      &-rightside {
+        // background-color: red;
+      }
     }
     .own {
       background-color: rgb(90, 201, 232);
@@ -138,7 +161,6 @@
   right: 0;
   top: 20%;
   cursor: pointer;
-  // background-color: red;
   width: 30px;
   height: 30px;
   display: flex;
@@ -148,19 +170,14 @@
 }
 
 .comment__edit-buttons {
-  position: relative;
-  display: flex;
-  width: 200px;
-  justify-content: space-between;
-  // flex-direction: column;
-  > button {
-    top: 10px;
-    right: 0px;
-    text-decoration: none;
+  position: absolute;
+  right: 40px;
+  top: 0px;
+  z-index: 999999;
 
-    // background-color: red;
-    // bottom: -20px;
-    // left: -20px;
-    // z-index: 9999;
+  > button {
+    top: 20px;
+    left: 10px;
+    text-decoration: none;
   }
 }
