@@ -7,7 +7,7 @@ import { AiOutlineComment } from "react-icons/ai";
 import { FaCommentSlash } from "react-icons/fa";
 import ZapEdit from "../../components/zap/ZapEdit";
 import { useSelector } from "react-redux";
-const ZapItem = ({ item, showComments, showAddZap }) => {
+const ZapItem = ({ item, showComments, showAddZap, setEditZap }) => {
   const userData = useSelector((state) => state.auth.data);
   const [zapMenu, setZapMenu] = useState(false);
   const openZapMenu = (e) => {
@@ -66,7 +66,12 @@ const ZapItem = ({ item, showComments, showAddZap }) => {
         </div>
       ) : null}
       {zapMenu ? (
-        <ZapEdit showAddZap={showAddZap} setZapMenu={setZapMenu} item={item} />
+        <ZapEdit
+          setEditZap={setEditZap}
+          showAddZap={showAddZap}
+          setZapMenu={setZapMenu}
+          item={item}
+        />
       ) : null}
     </div>
   );

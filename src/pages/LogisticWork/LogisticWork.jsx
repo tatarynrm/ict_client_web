@@ -23,6 +23,7 @@ import { editZapAddSlice } from "../../redux/slices/edit";
 import { useRef } from "react";
 import axios from "../../utils/axios";
 import { addReduxZap } from "../../redux/slices/zap";
+import { beep } from "../../helpers/audio";
 const LogisticWork = () => {
   const [searchFilter, setSearchFilter] = useState("");
   const dispatch = useDispatch();
@@ -40,6 +41,8 @@ const LogisticWork = () => {
   const [myZap, setMyZap] = useState(null);
   const zapAddSlice = useSelector((state) => state.edit.zapAddSlice);
   const [myZapSelect, setMyZapSelect] = useState(false);
+  const [editZap, setEditZap] = useState(false);
+  const zapEditStatus = useSelector((state) => state.edit.zapEdit);
   const showAddZap = () => {
     setAddZap((value) => !value);
   };
@@ -71,6 +74,7 @@ const LogisticWork = () => {
           KOD: data.ZAP_KOD,
         })
       );
+      beep();
     });
   }, [socket]);
   const showComments = async (item) => {
@@ -189,6 +193,7 @@ const LogisticWork = () => {
                   item={item}
                   showComments={showComments}
                   showAddZap={showAddZap}
+                  setEditZap={setEditZap}
                 />
               );
             })
@@ -206,6 +211,7 @@ const LogisticWork = () => {
           selectedZap={selectedZap}
         />
       ) : null}
+      {zapEditStatus ? <p>...Edit</p> : null}
       <ToastContainer />
     </div>
   );

@@ -15,8 +15,8 @@ const editSlice = createSlice({
   name: "edit",
   initialState,
   reducers: {
-    editZap: (state) => {
-      state.zapEdit = !state.zapEdit;
+    editZapRedux: (state) => {
+      state.edit.zapEdit = true;
     },
     editZapAddSlice: (state) => {
       state.zapAddSlice = !state.zapAddSlice;
@@ -26,5 +26,6 @@ const editSlice = createSlice({
     },
   },
 });
-export const { editZap, editZapAddSlice, editZapEditData } = editSlice.actions;
+export const { editZapRedux, editZapAddSlice, editZapEditData } =
+  editSlice.actions;
 export const editReducer = editSlice.reducer;
