@@ -24,6 +24,7 @@ import ZapEditForm from "./components/zap/ZapEditForm";
 import { io } from "socket.io-client";
 import socket from "./utils/socket";
 import CompanyFiles from "./pages/CompanyFiles/CompanyFiles";
+import ClosedCargos from "./pages/ClosedCargos/ClosedCargos";
 
 function App() {
   const dispatch = useDispatch();
@@ -52,6 +53,7 @@ function App() {
           <Route path={`/carriers`} element={<Carriers />} />
           <Route path={`/logistic-work`} element={<LogisticWork />} />
           <Route path={`/ict-files`} element={<CompanyFiles />} />
+          <Route path={`/closed-cargos`} element={<ClosedCargos />} />
           {/* <Route
             path={`/current-transportation`}
             element={<CurrentTransportation />}
