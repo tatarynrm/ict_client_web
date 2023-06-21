@@ -45,11 +45,9 @@ const Home = () => {
   const startOfMonth = moment().startOf("month").format("DD.MM.YYYY");
   const endOfMonth = moment().endOf("month").format("DD.MM.YYYY");
   const userData = useSelector((state) => state.auth.data);
-  // const { cargos } = useSelector((state) => state.cargos);
+
   const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(fetchCargos());
-  // }, []);
+
   useEffect(() => {
     userData && socket.emit("newUser", userData.KOD);
   }, [userData]);

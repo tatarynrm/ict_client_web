@@ -7,8 +7,13 @@
   }
   .ict__docs {
     display: flex;
+    flex-direction: column;
     gap: 10px;
     margin: 0 auto;
+  }
+  .docs__block {
+    display: flex;
+    gap: 10px;
   }
 
   .document__link-container {
