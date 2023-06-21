@@ -21,7 +21,7 @@ const ZapEdit = ({ item, showAddZap, setZapMenu, setEditZap }) => {
   const editCurrentZap = (e) => {
     e.stopPropagation();
     e.preventDefault();
-    setShowEditModal((value) => !value);
+    // setShowEditModal((value) => !value);
     // setZapMenu((value) => !value);
 
     // dispatch(
@@ -69,12 +69,12 @@ const ZapEdit = ({ item, showAddZap, setZapMenu, setEditZap }) => {
           <AiFillDelete />
           <span>Видалити</span>
         </i>
-        <i onClick={editCurrentZap} className="zap__edit-block  zap__edit-edit">
+        {/* <i onClick={editCurrentZap} className="zap__edit-block  zap__edit-edit">
           <AiFillEdit />
           <span>Редагувати</span>
-        </i>
+        </i> */}
       </div>
-      {showEditModal ? (
+      {/* {showEditModal ? (
         <div className="edit__zap">
           <form onSubmit={submitEditForm}>
             <div className="form__control">
@@ -82,7 +82,7 @@ const ZapEdit = ({ item, showAddZap, setZapMenu, setEditZap }) => {
             </div>
           </form>
         </div>
-      ) : null}
+      ) : null} */}
     </>
   );
 };
