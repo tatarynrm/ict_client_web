@@ -11,6 +11,7 @@ import "moment/locale/uk";
 import { io } from "socket.io-client";
 import ReactPlayer from "react-player/youtube";
 import docsGIF from "../../assets/docs__.gif";
+import colorsGIF from "../../assets/colors__.gif";
 ChartJS.register(ArcElement, Tooltip, Legend);
 const data = {
   labels: [
@@ -61,9 +62,15 @@ const Home = () => {
         </div>
         <div className="news">
           <code>
-            <h2>Добавлено документи 👇👇👇</h2>
-            <img style={{ width: "100%" }} src={docsGIF} alt="gif" />
+            <h2>Добавлено Колірні схеми 👇👇👇</h2>
+            <img style={{ width: "60%" }} src={colorsGIF} alt="gif" />
           </code>
+          <code>
+            <h2>Добавлено документи 👇👇👇</h2>
+            <img style={{ width: "60%" }} src={docsGIF} alt="gif" />
+          </code>
+          <br />
+          <br />
           <code>
             Усім привіт. Запускаємо в тестовий режим сайт,для внутрішньої роботи
             менеджерів з логістики. Посилання для входу{" "}
