@@ -45,12 +45,11 @@ const Home = () => {
   const startOfMonth = moment().startOf("month").format("DD.MM.YYYY");
   const endOfMonth = moment().endOf("month").format("DD.MM.YYYY");
   const userData = useSelector((state) => state.auth.data);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
-    userData && socket.emit("newUser", userData.KOD);
-  }, [userData]);
+    socket.emit("newUser", userData?.KOD);
+  }, []);
   const now = Date.now();
   return (
     <div className="home container">

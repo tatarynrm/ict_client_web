@@ -23,7 +23,7 @@ import { editZapAddSlice } from "../../redux/slices/edit";
 import { useRef } from "react";
 import axios from "../../utils/axios";
 import { addReduxZap } from "../../redux/slices/zap";
-import { beep } from "../../helpers/audio";
+import { beep, beepSend } from "../../helpers/audio";
 const LogisticWork = () => {
   const [searchFilter, setSearchFilter] = useState("");
   const dispatch = useDispatch();
@@ -74,7 +74,7 @@ const LogisticWork = () => {
           KOD: data.ZAP_KOD,
         })
       );
-      beep();
+      beepSend();
     });
   }, [socket]);
   const showComments = async (item) => {
