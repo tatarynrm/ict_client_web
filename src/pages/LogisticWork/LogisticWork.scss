@@ -155,6 +155,9 @@
 }
 
 .zap__rules {
+  position: absolute;
+  top: 0;
+  font-size: 12px;
   display: flex;
   flex-direction: column;
   gap: 10px;
