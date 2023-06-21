@@ -4,22 +4,27 @@ import { FcDocument } from "react-icons/fc";
 const links = [
   {
     title: "ДТЕП",
-    link: "../../assets/files/DTEP.zip",
+    link: "http://192.168.5.180/files/DTEP.rar",
     img: <GrDocumentZip />,
   },
   {
     title: "Логістик",
-    link: "../../assets/files/LOGISTIC.zip",
+    link: "http://192.168.5.180/files/LOGISTIC.rar",
     img: <GrDocumentZip />,
   },
   {
     title: "Фрахт",
-    link: "../../assets/files/FRAKHT.zip",
+    link: "http://192.168.5.180/files/FRAKHT.zip",
     img: <GrDocumentZip />,
   },
   {
     title: "Опитувальний лист",
-    link: "../../assets/files/ICT_LIST.doc",
+    link: "http://192.168.5.180/files/ICT_LIST.doc",
+    img: <FcDocument />,
+  },
+  {
+    title: "Заява про ... персональних даних",
+    link: "http://192.168.5.180/files/OPD_ZAY.doc",
     img: <FcDocument />,
   },
 ];
@@ -31,9 +36,10 @@ const CompanyFiles = () => {
         {links.map((item, idx) => {
           return (
             <a
+              key={idx}
               className="document__link-container"
               href={item.link}
-              download={true}
+              download
             >
               <div className="document__info-container">
                 {item.img}
