@@ -22,13 +22,13 @@ const ZapItem = ({ item, showComments, showAddZap, setEditZap }) => {
   const newZapColor = Date.now() - moment(item.DAT).valueOf();
   return (
     <div
-      style={{
-        backgroundColor: newZapColor <= 1800000 ? "#1dcf3b" : "#ebb099",
-      }}
+      // style={{
+      //   backgroundColor: newZapColor <= 1800000 ? "#4ddb65" : "#ebb099",
+      // }}
       onClick={() => showComments(item)}
       className={`zap zap-${item.KOD}`}
     >
-      {item.KOD_GROUP === 11 ? (
+      {newZapColor <= 1800000 ? (
         <div className="decor__line-div-zap-mizh"></div>
       ) : (
         <div className="decor__line-div-zap-region"></div>

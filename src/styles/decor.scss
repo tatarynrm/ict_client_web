@@ -10,8 +10,9 @@
 }
 .decor__line-div-zap-mizh {
   position: absolute;
-  background-color: var(--button-main);
-  height: 4px;
+  // background-color: var(--button-main);
+  background-color: rgb(20, 238, 20);
+  height: 8px;
   width: 100%;
   left: 0;
   top: -2px;
@@ -20,8 +21,8 @@
 }
 .decor__line-div-zap-region {
   position: absolute;
-  background-color: red;
-  height: 4px;
+  background-color: rgb(226, 75, 75);
+  height: 8px;
   width: 100%;
   left: 0;
   top: -2px;

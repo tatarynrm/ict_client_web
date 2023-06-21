@@ -144,14 +144,14 @@ const LogisticWork = () => {
         <div className="zap__rules-block">
           <div
             className="zap__rules-round"
-            style={{ backgroundColor: "#1dcf3b" }}
+            style={{ backgroundColor: "rgb(20, 238, 20)" }}
           ></div>
           <span>- Нова заявка на перевезення</span>
         </div>
         <div className="zap__rules-block">
           <div
             className="zap__rules-round"
-            style={{ backgroundColor: "#ebb099" }}
+            style={{ backgroundColor: "rgb(226, 75, 75)" }}
           ></div>
           <span>- Заявка яка має термін життя більший ніж 30хв</span>
         </div>
