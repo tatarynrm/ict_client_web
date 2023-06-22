@@ -45,16 +45,16 @@ const ZapItem = ({ item, showComments, showAddZap, setEditZap }) => {
               />
             ) : (
               <AiOutlineComment
-                style={{ color: ifMyCommentHere ? "blue" : "black" }}
+                style={{ color: item.COUNTMYCOMM > 0 ? "blue" : "black" }}
                 title="Кількість коментарів"
               />
             )}
 
             <span
               style={{
-                color: ifMyCommentHere ? "blue" : "black",
-                fontWeight: ifMyCommentHere ? "bold" : "normal",
-                fontSize: ifMyCommentHere ? "20px" : "14px",
+                color: item.COUNTMYCOMM > 0 ? "blue" : "black",
+                fontWeight: item.COUNTMYCOMM > 0 ? "bold" : "normal",
+                fontSize: item.COUNTMYCOMM > 0 ? "20px" : "14px",
               }}
             >
               {item.COUNTCOMM <= 0 ? null : item.COUNTCOMM}
