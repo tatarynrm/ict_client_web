@@ -34,8 +34,7 @@ const AddZap = ({ selectedGroup, showAddZap, setAddZap }) => {
         if (data.status === 200) {
           const dataKod = data.data.outBinds.pKodZap;
           socket.emit("newZap", { ...object, ZAP_KOD: dataKod });
-          // showAddZap();
-          // setAddZap((value) => !value);
+          і;
           dispatch(editZapAddSlice());
         } else {
           alert("Виникла якась помилка");
