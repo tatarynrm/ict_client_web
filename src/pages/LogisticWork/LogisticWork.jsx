@@ -36,16 +36,21 @@ const LogisticWork = () => {
   const [filterZap, setFilterZap] = useState([]);
   const [selectedZap, setSelectedZap] = useState(null);
   const [addZap, setAddZap] = useState(false);
-  const [selectedGroup, setSelectedGroup] = useState(3211 || selectedGroup);
+  const [selectedGroup, setSelectedGroup] = useState(21 || selectedGroup);
   const comments = useSelector((state) => state.comments.comments);
   const [myZap, setMyZap] = useState(null);
   const zapAddSlice = useSelector((state) => state.edit.zapAddSlice);
   const [myZapSelect, setMyZapSelect] = useState(false);
   const [editZap, setEditZap] = useState(false);
   const zapEditStatus = useSelector((state) => state.edit.zapEdit);
+  console.log(userData);
   const notify = (data) =>
     toast(
-      `👉 ${data.PIP} щойно добавив нову заявку  ✅${data.ZAP_KOD} Завантаження: ${data.pZav} - Вивантаження: ${data.pRozv}`,
+      `👉 ${data.PIP} щойно ${
+        userData?.CODE_SEX == "W" ? "додала" : "додав"
+      } нову заявку  ✅${data.ZAP_KOD} Завантаження: ${
+        data.pZav
+      } - Вивантаження: ${data.pRozv}`,
       {
         position: "bottom-right",
         autoClose: false,
@@ -192,7 +197,7 @@ const LogisticWork = () => {
                     value={item.KOD}
                     className="normal"
                   >
-                    {item.NGROUP}{" "}
+                    {item.NGROUP}
                     {zap.filter((value) => value.KOD_GROUP === item.KOD).length}
                   </button>
                 </div>
