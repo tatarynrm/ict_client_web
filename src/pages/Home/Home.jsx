@@ -12,6 +12,8 @@ import { io } from "socket.io-client";
 import ReactPlayer from "react-player/youtube";
 import docsGIF from "../../assets/docs__.gif";
 import colorsGIF from "../../assets/colors__.gif";
+import sitePNG from "../../assets/site__push.png";
+import tgPNG from "../../assets/telegram__push.png";
 ChartJS.register(ArcElement, Tooltip, Legend);
 const data = {
   labels: [
@@ -62,11 +64,16 @@ const Home = () => {
         </div>
         <div className="news">
           <code>
-            <h2>Добавлено Колірні схеми 👇👇👇</h2>
+            <h2>Додано сповіщення 👇👇👇 на сайті + телеграм</h2>
+            <img style={{ width: "40%" }} src={sitePNG} alt="png" />
+            <img style={{ width: "40%" }} src={tgPNG} alt="png" />
+          </code>
+          <code>
+            <h2>Додано Колірні схеми 👇👇👇</h2>
             <img style={{ width: "90%" }} src={colorsGIF} alt="gif" />
           </code>
           <code>
-            <h2>Добавлено документи 👇👇👇</h2>
+            <h2>Додано документи 👇👇👇</h2>
             <img style={{ width: "90%" }} src={docsGIF} alt="gif" />
           </code>
           <br />

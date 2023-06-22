@@ -6,12 +6,24 @@ import {
   FcSalesPerformance,
   FcShipped,
   FcDocument,
+  FcNews,
 } from "react-icons/fc";
 import { FaCarCrash } from "react-icons/fa";
 import { MdCarCrash } from "react-icons/md";
 
 export const navbar_menu = [
   // { label: "Чат", link: "/chat", icon: <FcAssistant /> },
+  {
+    label: "Новини",
+    link: "/",
+    icon: <FcNews />,
+    // submenu: [
+    //   { label: "Актуальні завантаження", link: "/current-transportation" },
+    //   { label: "Тендери", link: "/tenders" },
+    //   { label: "Закриті завантаження", link: "/closed-transportation" },
+    //   { label: "Запит ціни", link: "/transportation-price" },
+    // ],
+  },
   {
     label: "Документи",
     link: "/ict-files",

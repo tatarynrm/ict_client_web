@@ -15,7 +15,7 @@ import {
   fetchGroups,
   fetchZap,
 } from "../../redux/slices/zap";
-
+import { notifyNewZap } from "../../utils/toasts";
 import socket from "../../utils/socket";
 import ZapItem from "../../components/zap/ZapItem";
 import ZapEditForm from "../../components/zap/ZapEditForm";
@@ -44,24 +44,24 @@ const LogisticWork = () => {
   const [editZap, setEditZap] = useState(false);
   const zapEditStatus = useSelector((state) => state.edit.zapEdit);
 
-  const notify = (data) =>
-    toast(
-      `👉 ${data.PIP} щойно ${
-        userData?.CODE_SEX == "W" ? "додала" : "додав"
-      } нову заявку  ✅${data.ZAP_KOD} Завантаження: ${
-        data.pZav
-      } - Вивантаження: ${data.pRozv}`,
-      {
-        position: "bottom-right",
-        autoClose: false,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      }
-    );
+  // const notify = (data) =>
+  //   toast(
+  //     `👉 ${data.PIP} щойно ${
+  //       userData?.CODE_SEX == "W" ? "додала" : "додав"
+  //     } нову заявку  ✅${data.ZAP_KOD} Завантаження: ${
+  //       data.pZav
+  //     } - Вивантаження: ${data.pRozv}`,
+  //     {
+  //       position: "bottom-right",
+  //       autoClose: false,
+  //       hideProgressBar: false,
+  //       closeOnClick: true,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //       progress: undefined,
+  //       theme: "light",
+  //     }
+  //   );
   const showAddZap = () => {
     setAddZap((value) => !value);
   };
@@ -94,7 +94,7 @@ const LogisticWork = () => {
         })
       );
       console.log(data);
-      notify(data);
+      notifyNewZap(userData, data);
       beepSend();
     });
   }, [socket]);
