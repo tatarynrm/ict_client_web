@@ -10,12 +10,14 @@ import { useSelector } from "react-redux";
 const ZapItem = ({ item, showComments, showAddZap, setEditZap }) => {
   const userData = useSelector((state) => state.auth.data);
   const [zapMenu, setZapMenu] = useState(false);
+  const comments = useSelector((state) => state.comments.comments.items);
+  const ifMyCommentHere = comments.some((val) => val.KOD_OS === userData?.KOD);
   const openZapMenu = (e) => {
     e.stopPropagation();
     setZapMenu((val) => !val);
   };
-  console.log(Date.now());
-  console.log(Date.now() - moment(item.DAT).valueOf());
+  // console.log(Date.now());
+  // console.log(Date.now() - moment(item.DAT).valueOf());
   const newZapColor = Date.now() - moment(item.DAT).valueOf();
   return (
     <div onClick={() => showComments(item)} className={`zap zap-${item.KOD}`}>
@@ -42,10 +44,21 @@ const ZapItem = ({ item, showComments, showAddZap, setEditZap }) => {
                 className="comments__tooltip"
               />
             ) : (
-              <AiOutlineComment title="Кількість коментарів" />
+              <AiOutlineComment
+                style={{ color: ifMyCommentHere ? "blue" : "black" }}
+                title="Кількість коментарів"
+              />
             )}
 
-            <span>{item.COUNTCOMM <= 0 ? null : item.COUNTCOMM}</span>
+            <span
+              style={{
+                color: ifMyCommentHere ? "blue" : "black",
+                fontWeight: ifMyCommentHere ? "bold" : "normal",
+                fontSize: ifMyCommentHere ? "20px" : "14px",
+              }}
+            >
+              {item.COUNTCOMM <= 0 ? null : item.COUNTCOMM}
+            </span>
             {item.COUNTNEWCOMM <= 0 ? null : (
               <span className="new__comments">{item.COUNTNEWCOMM}</span>
             )}

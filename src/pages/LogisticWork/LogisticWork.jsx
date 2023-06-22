@@ -43,7 +43,7 @@ const LogisticWork = () => {
   const [myZapSelect, setMyZapSelect] = useState(false);
   const [editZap, setEditZap] = useState(false);
   const zapEditStatus = useSelector((state) => state.edit.zapEdit);
-  console.log(userData);
+
   const notify = (data) =>
     toast(
       `👉 ${data.PIP} щойно ${
