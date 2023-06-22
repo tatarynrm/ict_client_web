@@ -201,6 +201,9 @@
   .zap {
     gap: 20px;
   }
+  .zap__rules {
+    display: none;
+  }
 }
 @media (max-width: 685px) {
   .zap__list {
