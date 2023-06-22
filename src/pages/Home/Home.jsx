@@ -14,6 +14,7 @@ import docsGIF from "../../assets/docs__.gif";
 import colorsGIF from "../../assets/colors__.gif";
 import sitePNG from "../../assets/site__push.png";
 import tgPNG from "../../assets/telegram__push.png";
+import commentsCountPNG from "../../assets/comments__count.png";
 ChartJS.register(ArcElement, Tooltip, Legend);
 const data = {
   labels: [
@@ -63,6 +64,18 @@ const Home = () => {
           </h1> */}
         </div>
         <div className="news">
+          <code>
+            <h2>Додано виділення переглянутих заявок 👇👇👇</h2>
+            <p>
+              Якщо ви вже ставили коментар в заявці, кількість коментарів
+              виділяється синім кольором!
+              <p>
+                Якщо ж не приймали участь у коментуванні,колір залишається
+                чорним!
+              </p>
+            </p>
+            <img style={{ width: "20%" }} src={commentsCountPNG} alt="png" />
+          </code>
           <code>
             <h2>Додано сповіщення 👇👇👇 на сайті + телеграм</h2>
             <img style={{ width: "40%" }} src={sitePNG} alt="png" />
