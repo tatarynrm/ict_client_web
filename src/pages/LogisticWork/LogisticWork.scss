@@ -184,6 +184,11 @@
   align-items: center;
   justify-content: center;
 }
+
+.zap__item-kod {
+  font-weight: bold;
+  color: blue;
+}
 @media (max-width: 1350px) {
   .zap__list {
     grid-template-columns: repeat(3, 1fr);

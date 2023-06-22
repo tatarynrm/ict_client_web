@@ -63,11 +63,11 @@ const Home = () => {
         <div className="news">
           <code>
             <h2>Добавлено Колірні схеми 👇👇👇</h2>
-            <img style={{ width: "60%" }} src={colorsGIF} alt="gif" />
+            <img style={{ width: "90%" }} src={colorsGIF} alt="gif" />
           </code>
           <code>
             <h2>Добавлено документи 👇👇👇</h2>
-            <img style={{ width: "60%" }} src={docsGIF} alt="gif" />
+            <img style={{ width: "90%" }} src={docsGIF} alt="gif" />
           </code>
           <br />
           <br />

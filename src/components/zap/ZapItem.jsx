@@ -14,20 +14,11 @@ const ZapItem = ({ item, showComments, showAddZap, setEditZap }) => {
     e.stopPropagation();
     setZapMenu((val) => !val);
   };
-  // console.log("====================================");
-  // console.log(moment(item.DAT).valueOf());
-  // console.log("====================================");
   console.log(Date.now());
   console.log(Date.now() - moment(item.DAT).valueOf());
   const newZapColor = Date.now() - moment(item.DAT).valueOf();
   return (
-    <div
-      // style={{
-      //   backgroundColor: newZapColor <= 1800000 ? "#4ddb65" : "#ebb099",
-      // }}
-      onClick={() => showComments(item)}
-      className={`zap zap-${item.KOD}`}
-    >
+    <div onClick={() => showComments(item)} className={`zap zap-${item.KOD}`}>
       {newZapColor <= 1800000 ? (
         <div className="decor__line-div-zap-new"></div>
       ) : (
@@ -37,7 +28,12 @@ const ZapItem = ({ item, showComments, showAddZap, setEditZap }) => {
         <div className="decor__line-div-zap-3hour"></div>
       ) : null}
       <div className="zap__author">
-        <div className="zap__author-name">{item.PIP}</div>
+        <div className="zap__item-kod" title="Код заявки">
+          {item.KOD}
+        </div>
+        <div className="zap__author-name" title="Автор заявки">
+          {item.PIP}
+        </div>
         <div className="zap__comments-length">
           <div className="zap__comments-counter">
             {item.COUNTCOMM <= 0 ? (
@@ -46,7 +42,7 @@ const ZapItem = ({ item, showComments, showAddZap, setEditZap }) => {
                 className="comments__tooltip"
               />
             ) : (
-              <AiOutlineComment />
+              <AiOutlineComment title="Кількість коментарів" />
             )}
 
             <span>{item.COUNTCOMM <= 0 ? null : item.COUNTCOMM}</span>
@@ -55,20 +51,22 @@ const ZapItem = ({ item, showComments, showAddZap, setEditZap }) => {
             )}
           </div>
         </div>
-        <div className="zap__author-time">{`${moment(item.DAT)
-          .startOf("minute")
-          .fromNow()}`}</div>
+        <div
+          className="zap__author-time"
+          title="Час створення заявки"
+        >{`${moment(item.DAT).startOf("minute").fromNow()}`}</div>
       </div>
       <div className="zap__cities">
         <div>
-          {item.ZAV} <br /> - <br />
-          {item.ROZV}
+          <span title="Завантаження">{item.ZAV} </span> <br /> - <br />
+          <span title="Вивантаження"> {item.ROZV}</span>
         </div>
       </div>
       <div
-        onClick={() =>
-          copyTextToClipboard(`${item.ZAV} - ${item.ROZV}\n${item.ZAPTEXT}`)
-        }
+        // onClick={() =>
+        //   copyTextToClipboard(`${item.ZAV} - ${item.ROZV}\n${item.ZAPTEXT}`)
+        // }
+        title="Основна інформація по завантаженні"
         className="zap__text"
       >
         {item.ZAPTEXT}

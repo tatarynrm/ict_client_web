@@ -43,6 +43,20 @@ const LogisticWork = () => {
   const [myZapSelect, setMyZapSelect] = useState(false);
   const [editZap, setEditZap] = useState(false);
   const zapEditStatus = useSelector((state) => state.edit.zapEdit);
+  const notify = (data) =>
+    toast(
+      `👉 ${data.PIP} щойно добавив нову заявку  ✅${data.ZAP_KOD} Завантаження: ${data.pZav} - Вивантаження: ${data.pRozv}`,
+      {
+        position: "bottom-right",
+        autoClose: false,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      }
+    );
   const showAddZap = () => {
     setAddZap((value) => !value);
   };
@@ -74,6 +88,8 @@ const LogisticWork = () => {
           KOD: data.ZAP_KOD,
         })
       );
+      console.log(data);
+      notify(data);
       beepSend();
     });
   }, [socket]);
@@ -199,7 +215,8 @@ const LogisticWork = () => {
                 : item.ZAV.toLowerCase().includes(searchFilter) ||
                     item.ROZV.toLowerCase().includes(searchFilter) ||
                     item.PIP.toUpperCase().includes(searchFilter) ||
-                    item.PIP.toLowerCase().includes(searchFilter);
+                    item.PIP.toLowerCase().includes(searchFilter) ||
+                    item.KOD.toString().includes(searchFilter);
             })
             .filter((item) => {
               if (myZapSelect) {
