@@ -146,7 +146,7 @@ const ZapComments = ({ showComments, selectedZap }) => {
         <div className="comments__control">
           <input
             type="text"
-            placeholder="Фрахт,Перевізник,К-сть авто"
+            placeholder="Фрахт,Перевізник,К-сть авто (мінімум 2 символа)"
             value={comment}
             onChange={(e) => setComment(e.target.value)}
             onKeyDown={handleKeyDown}
