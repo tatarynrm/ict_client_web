@@ -72,6 +72,17 @@ const zapSlice = createSlice({
       const id = action.payload;
       state.zap.items = state.zap.items.filter((item) => item.KOD !== id);
     },
+    refreshReduxZap: (state, action) => {
+      const id = action.payload;
+      const dateZap = state.zap.items.find((item) => item.KOD === id);
+
+      if (dateZap) {
+        const date = new Date();
+        date.toISOString();
+        dateZap.DAT = date;
+      }
+      state.zap.items = [...state.zap.items];
+    },
   },
   extraReducers: {
     [fetchZap.pending]: (state) => {
@@ -112,6 +123,10 @@ const zapSlice = createSlice({
     },
   },
 });
-export const { addReduxZap, deleteReduxZap, changeCommentsCount } =
-  zapSlice.actions;
+export const {
+  addReduxZap,
+  deleteReduxZap,
+  changeCommentsCount,
+  refreshReduxZap,
+} = zapSlice.actions;
 export const zapReducer = zapSlice.reducer;

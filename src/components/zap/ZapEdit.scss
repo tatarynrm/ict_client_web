@@ -19,7 +19,7 @@
   position: absolute;
   z-index: 99999;
   top: 0px;
-  right: -130px;
+  right: -160px;
   // background-color: rgb(222, 221, 221);
   background-color: white;
 
@@ -36,6 +36,8 @@
 }
 
 .zap__edit-block {
+  position: relative;
+  z-index: 999999;
   display: flex;
   gap: 5px;
   align-items: center;

@@ -14,6 +14,7 @@ import {
   deleteReduxZap,
   fetchGroups,
   fetchZap,
+  refreshReduxZap,
 } from "../../redux/slices/zap";
 import { notifyNewZap } from "../../utils/toasts";
 import socket from "../../utils/socket";
@@ -106,6 +107,11 @@ const LogisticWork = () => {
       dispatch(deleteReduxZap(data));
     });
   }, [socket]);
+  useEffect(() => {
+    socket.on("refreshAllZap", (data) => {
+      dispatch(refreshReduxZap(data));
+    });
+  }, [zap]);
   return (
     <div className="logistic logistic__work container">
       <div className="logistic__work-nav">

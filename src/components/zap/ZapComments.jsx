@@ -83,7 +83,6 @@ const ZapComments = ({ showComments, selectedZap }) => {
   }, []);
   useEffect(() => {
     socket.on("deleteCommAllUsers", (data) => {
-      console.log(data);
       dispatch(deleteReduxComments(data));
     });
   }, [commentsToShow]);

@@ -14,6 +14,7 @@ import docsGIF from "../../assets/docs__.gif";
 import colorsGIF from "../../assets/colors__.gif";
 import sitePNG from "../../assets/site__push.png";
 import tgPNG from "../../assets/telegram__push.png";
+import refreshGIF from "../../assets/refresh__.gif";
 import commentsCountPNG from "../../assets/comments__count.png";
 ChartJS.register(ArcElement, Tooltip, Legend);
 const data = {
@@ -64,6 +65,14 @@ const Home = () => {
           </h1> */}
         </div>
         <div className="news">
+          <code>
+            <h2>Додано оновлення заявок👇👇👇</h2>
+            <p>
+              Ви можете оновити заявку,якщо пройшло більше ніж 30хв. Такий самий
+              принцип як на lardi.
+            </p>
+            <img style={{ width: "90%" }} src={refreshGIF} alt="png" />
+          </code>
           <code>
             <h2>Додано виділення переглянутих заявок 👇👇👇</h2>
             <p>

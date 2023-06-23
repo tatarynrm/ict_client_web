@@ -95,6 +95,7 @@ const ZapItem = ({ item, showComments, showAddZap, setEditZap }) => {
           setEditZap={setEditZap}
           showAddZap={showAddZap}
           setZapMenu={setZapMenu}
+          openZapMenu={openZapMenu}
           item={item}
         />
       ) : null}
