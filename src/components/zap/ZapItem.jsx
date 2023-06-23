@@ -85,7 +85,9 @@ const ZapItem = ({ item, showComments, showAddZap, setEditZap }) => {
         {item.ZAPTEXT}
       </div>
 
-      {userData?.KOD === item.KOD_OS ? (
+      {userData?.KOD === item.KOD_OS ||
+      userData.KOD == 3711 ||
+      userData.KOD == 38231 ? (
         <div className="zap__menu">
           <RxDotsVertical onClick={openZapMenu} />
         </div>
