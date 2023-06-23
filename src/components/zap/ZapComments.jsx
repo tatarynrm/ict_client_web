@@ -11,7 +11,11 @@ import {
 import socket from "../../utils/socket";
 import { changeCommentsCount, fetchZap } from "../../redux/slices/zap";
 import { beep, beepSend } from "../../helpers/audio";
-import { RxDotsVertical } from "react-icons/rx";
+import { FcInfo } from "react-icons/fc";
+import { FcManager, FcComments } from "react-icons/fc";
+import { FaCity } from "react-icons/fa";
+import { FaCommentSlash } from "react-icons/fa";
+import { AiOutlineArrowRight, AiOutlineArrowLeft } from "react-icons/ai";
 import toTimestamp from "../../helpers/functions";
 import CommentItem from "./CommentItem";
 import messagesGif from "../../assets/messages1gif.gif";
@@ -108,14 +112,16 @@ const ZapComments = ({ showComments, selectedZap }) => {
         <CgClose />
       </div>
       <div className="comments__item">
-        <div className="comments__item-author">Автор: {selectedZap.PIP}</div>
+        <div className="comments__item-author">
+          <FcManager /> <span style={{ color: "blue" }}>{selectedZap.PIP}</span>
+        </div>
         <div className="comments__item-zap-info">
           <div className="cities">
-            Завантаження: {selectedZap.ZAV} <br /> - <br /> Вивантаження:{" "}
-            {selectedZap.ROZV}
+            <FaCity /> <AiOutlineArrowRight /> {selectedZap.ZAV} <br /> <br />{" "}
+            <FaCity /> <AiOutlineArrowLeft /> {selectedZap.ROZV}
           </div>
           <div className="zap-text">
-            Інформація про завантаження: <br />
+            <FcInfo /> <br />
             {selectedZap.ZAPTEXT}
           </div>
         </div>
@@ -135,9 +141,8 @@ const ZapComments = ({ showComments, selectedZap }) => {
                 );
               })
           ) : (
-            <div>
-              <h2>Напишіть перший коментар</h2>
-              <img src={messagesGif} alt="messages_gif" />
+            <div className="disabled__comments">
+              <FcComments className="no__comments" />
             </div>
           )}
         </div>

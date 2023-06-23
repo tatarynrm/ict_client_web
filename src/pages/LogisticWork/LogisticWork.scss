@@ -197,6 +197,9 @@
   width: 100%;
   height: 100%;
 }
+.cities {
+  color: rgb(226, 146, 41);
+}
 @media (max-width: 1350px) {
   .zap__list {
     grid-template-columns: repeat(3, 1fr);

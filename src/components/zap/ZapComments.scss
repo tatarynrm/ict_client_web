@@ -54,10 +54,15 @@
       font-weight: bold;
     }
     .zap-text {
+      background-color: rgb(214, 208, 208);
       margin-top: 10px;
-      font-size: 20px;
+      font-size: 19px;
       font-weight: bold;
       word-break: break-all;
+      // font-style: italic;
+      font-family: monospace;
+      color: black;
+      padding: 0.4rem;
     }
   }
 
@@ -180,4 +185,13 @@
     left: 10px;
     text-decoration: none;
   }
+}
+.no__comments {
+  width: 70%;
+  height: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 200px;
 }
