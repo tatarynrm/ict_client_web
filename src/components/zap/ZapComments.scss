@@ -88,6 +88,7 @@
 
     .manager__comment {
       display: flex;
+      flex-direction: column;
       gap: 10px;
 
       position: relative;
@@ -99,11 +100,14 @@
       &-leftside {
         // background-color: red;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+        gap: 10px;
+        text-align: center;
+        align-items: center;
       }
       .comment__date {
-        position: absolute;
-        bottom: 0;
+        // position: absolute;
+        //  bottom: 0;
         font-size: 14px;
         color: gray;
       }
