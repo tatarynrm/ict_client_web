@@ -15,6 +15,7 @@ import {
   fetchGroups,
   fetchZap,
   refreshReduxZap,
+  showEditReduxZap,
 } from "../../redux/slices/zap";
 import { notifyNewZap } from "../../utils/toasts";
 import socket from "../../utils/socket";
@@ -25,6 +26,7 @@ import { useRef } from "react";
 import axios from "../../utils/axios";
 import { addReduxZap } from "../../redux/slices/zap";
 import { beep, beepSend } from "../../helpers/audio";
+
 const LogisticWork = () => {
   const [searchFilter, setSearchFilter] = useState("");
   const dispatch = useDispatch();
@@ -37,14 +39,12 @@ const LogisticWork = () => {
   const [filterZap, setFilterZap] = useState([]);
   const [selectedZap, setSelectedZap] = useState(null);
   const [addZap, setAddZap] = useState(false);
-  const [selectedGroup, setSelectedGroup] = useState(21 || selectedGroup);
+  const [selectedGroup, setSelectedGroup] = useState(null);
   const comments = useSelector((state) => state.comments.comments);
   const [myZap, setMyZap] = useState(null);
   const zapAddSlice = useSelector((state) => state.edit.zapAddSlice);
   const [myZapSelect, setMyZapSelect] = useState(false);
   const [editZap, setEditZap] = useState(false);
-  const zapEditStatus = useSelector((state) => state.edit.zapEdit);
-
   const showAddZap = () => {
     setAddZap((value) => !value);
   };
@@ -76,7 +76,6 @@ const LogisticWork = () => {
           KOD: data.ZAP_KOD,
         })
       );
-      console.log(data);
       notifyNewZap(userData, data);
       beepSend();
     });
@@ -112,6 +111,12 @@ const LogisticWork = () => {
       dispatch(refreshReduxZap(data));
     });
   }, [zap]);
+  useEffect(() => {
+    socket.on("showEditZap", (data) => {
+      dispatch(showEditReduxZap(data));
+    });
+  }, [zap]);
+
   return (
     <div className="logistic logistic__work container">
       <div className="logistic__work-nav">
@@ -185,7 +190,7 @@ const LogisticWork = () => {
                     value={item.KOD}
                     className="normal"
                   >
-                    {item.NGROUP}
+                    {item.NGROUP}{" "}
                     {zap.filter((value) => value.KOD_GROUP === item.KOD).length}
                   </button>
                 </div>
@@ -244,7 +249,6 @@ const LogisticWork = () => {
           selectedZap={selectedZap}
         />
       ) : null}
-      {zapEditStatus ? <p>...Edit</p> : null}
       <ToastContainer />
     </div>
   );

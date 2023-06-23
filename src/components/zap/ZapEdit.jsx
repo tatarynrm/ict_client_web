@@ -20,22 +20,21 @@ const ZapEdit = ({ item, showAddZap, setZapMenu, setEditZap, openZapMenu }) => {
   const zap = useSelector((state) => state.zap.items);
   const refreshAccessTime = Date.now() - moment(item.DAT).valueOf();
   const dispatch = useDispatch();
-
+  const zapEditStatus = useSelector((state) => state.edit.zapEdit);
   const editCurrentZap = (e) => {
     e.stopPropagation();
     e.preventDefault();
-    // setShowEditModal((value) => !value);
-    // setZapMenu((value) => !value);
-
-    // dispatch(
-    //   editZapEditData({
-    //     zav: item.ZAV,
-    //     rozv: item.ROZV,
-    //     zapText: item.ZAPTEXT,
-    //     zapKod: item.KOD,
-    //     zapKodOs: item.KOD_OS,
-    //   })
-    // );
+    dispatch(editZapRedux());
+    setZapMenu(false);
+    dispatch(
+      editZapEditData({
+        zav: item.ZAV,
+        rozv: item.ROZV,
+        zapText: item.ZAPTEXT,
+        zapKod: item.KOD,
+        zapKodOs: item.KOD_OS,
+      })
+    );
   };
   const refreshZap = async (e) => {
     e.preventDefault();
@@ -78,10 +77,6 @@ const ZapEdit = ({ item, showAddZap, setZapMenu, setEditZap, openZapMenu }) => {
         setZapMenu(false);
         if (data.status === 200) {
           socket.emit("deleteZap", item.KOD);
-          // dispatch(fetchZap(userData?.KOD));
-          // socket.on("deleteZapAllUsers", () => {
-          //   dispatch(deleteReduxZap(item.KOD));
-          // });
         }
       } else {
       }
@@ -93,26 +88,29 @@ const ZapEdit = ({ item, showAddZap, setZapMenu, setEditZap, openZapMenu }) => {
   return (
     <>
       <div className="zap__menu-buttons">
-        <i onClick={deleteZap} className="zap__edit-block zap__edit-delete">
-          <AiFillDelete />
-          <span>Видалити</span>
-        </i>
-        {/* <i onClick={editCurrentZap} className="zap__edit-block  zap__edit-edit">
+        <i onClick={editCurrentZap} className="zap__edit-block  zap__edit-edit">
           <AiFillEdit />
           <span>Редагувати</span>
-        </i> */}
+        </i>
         <i onClick={refreshZap} className="zap__edit-block  zap__edit-edit">
           <BiRefresh />
           <span>Оновити заявку</span>
         </i>
+        <i onClick={deleteZap} className="zap__edit-block zap__edit-delete">
+          <AiFillDelete />
+          <span>Видалити</span>
+        </i>
       </div>
-      {/* {showEditModal ? (
-        <div className="edit__zap">
-          <form onSubmit={submitEditForm}>
-            <div className="form__control">
-              <input type="text" />
-            </div>
-          </form>
+      {/* {zapEditStatus ? (
+        <div className="zap__edit-form">
+          <div className="zap__edit-form-container">
+            <form>
+              <div className="form__control">
+                <label>Завантаження</label>
+                <input type="text" />
+              </div>
+            </form>
+          </div>
         </div>
       ) : null} */}
     </>

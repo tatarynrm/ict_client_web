@@ -57,6 +57,7 @@ const AddZap = ({ selectedGroup, showAddZap, setAddZap }) => {
           selectProps={{
             zav,
             onChange: setZav,
+            placeholder: "Місто завантаження",
           }}
         />
       </div>
@@ -69,6 +70,7 @@ const AddZap = ({ selectedGroup, showAddZap, setAddZap }) => {
           selectProps={{
             rozv,
             onChange: setRozv,
+            placeholder: "Місто вивантаження",
           }}
         />
       </div>

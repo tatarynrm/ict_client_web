@@ -83,6 +83,16 @@ const zapSlice = createSlice({
       }
       state.zap.items = [...state.zap.items];
     },
+    showEditReduxZap: (state, action) => {
+      const { pKodZap, pZapText, pZav, pRozv } = action.payload;
+      const editZap = state.zap.items.find((item) => item.KOD === pKodZap);
+      if (editZap) {
+        editZap.ZAPTEXT = pZapText;
+        editZap.ZAV = pZav;
+        editZap.ROZV = pRozv;
+      }
+      state.zap.items = [...state.zap.items];
+    },
   },
   extraReducers: {
     [fetchZap.pending]: (state) => {
@@ -128,5 +138,6 @@ export const {
   deleteReduxZap,
   changeCommentsCount,
   refreshReduxZap,
+  showEditReduxZap,
 } = zapSlice.actions;
 export const zapReducer = zapSlice.reducer;

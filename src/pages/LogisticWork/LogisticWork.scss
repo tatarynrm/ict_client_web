@@ -189,6 +189,14 @@
   font-weight: bold;
   color: blue;
 }
+
+.zap__edit-form {
+  position: absolute;
+  z-index: 99999;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
 @media (max-width: 1350px) {
   .zap__list {
     grid-template-columns: repeat(3, 1fr);

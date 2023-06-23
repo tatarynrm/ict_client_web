@@ -31,6 +31,7 @@ function App() {
   const isAuth = useSelector(selectIsAuth);
   const token = window.localStorage.getItem("token");
   const userData = useSelector((state) => state.auth.data);
+  const zapEditStatus = useSelector((state) => state.edit.zapEdit);
   useEffect(() => {
     dispatch(fetchAuthMe());
   }, []);
@@ -65,7 +66,7 @@ function App() {
         </Route>
         <Route path="*" exact={true} element={<DoesntExist />} />
       </Routes>
-
+      {zapEditStatus ? <ZapEditForm /> : null}
       {/* <Footer /> */}
     </>
   );

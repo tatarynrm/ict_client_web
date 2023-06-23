@@ -11,13 +11,10 @@ const ZapItem = ({ item, showComments, showAddZap, setEditZap }) => {
   const userData = useSelector((state) => state.auth.data);
   const [zapMenu, setZapMenu] = useState(false);
   const comments = useSelector((state) => state.comments.comments.items);
-  const ifMyCommentHere = comments.some((val) => val.KOD_OS === userData?.KOD);
   const openZapMenu = (e) => {
     e.stopPropagation();
     setZapMenu((val) => !val);
   };
-  // console.log(Date.now());
-  // console.log(Date.now() - moment(item.DAT).valueOf());
   const newZapColor = Date.now() - moment(item.DAT).valueOf();
   return (
     <div onClick={() => showComments(item)} className={`zap zap-${item.KOD}`}>
@@ -75,13 +72,7 @@ const ZapItem = ({ item, showComments, showAddZap, setEditZap }) => {
           <span title="Вивантаження"> {item.ROZV}</span>
         </div>
       </div>
-      <div
-        // onClick={() =>
-        //   copyTextToClipboard(`${item.ZAV} - ${item.ROZV}\n${item.ZAPTEXT}`)
-        // }
-        title="Основна інформація по завантаженні"
-        className="zap__text"
-      >
+      <div title="Основна інформація по завантаженні" className="zap__text">
         {item.ZAPTEXT}
       </div>
 

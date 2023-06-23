@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 
 const initialState = {
   zapEdit: false,
@@ -16,7 +16,7 @@ const editSlice = createSlice({
   initialState,
   reducers: {
     editZapRedux: (state) => {
-      state.edit.zapEdit = true;
+      state.zapEdit = !state.zapEdit;
     },
     editZapAddSlice: (state) => {
       state.zapAddSlice = !state.zapAddSlice;
