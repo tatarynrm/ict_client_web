@@ -28,7 +28,9 @@ const HeaderAvatar = () => {
       </div>
       <div className="header__avatar-options">
         <div className="header__avatar-contacts">
-          <p>Тел.моб : {userData?.TEL}</p>
+          <p style={{ color: "blue" }}>Тел.моб: {userData?.TEL}</p>
+          <p style={{ color: "blue" }}>E-mail: {userData?.MAIL}</p>
+          <p style={{ color: "blue" }}>Код: {userData?.KOD}</p>
         </div>
         <button onClick={logoutFromAccount} className="danger">
           Вийти з аккаунту

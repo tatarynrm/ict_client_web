@@ -25,6 +25,7 @@ import { io } from "socket.io-client";
 import socket from "./utils/socket";
 import CompanyFiles from "./pages/CompanyFiles/CompanyFiles";
 import ClosedCargos from "./pages/ClosedCargos/ClosedCargos";
+import AdminPanel from "./pages/AdminPanel/AdminPanel";
 
 function App() {
   const dispatch = useDispatch();
@@ -63,6 +64,7 @@ function App() {
             path={`/current-transportation/:id`}
             element={<CurrentTransportationItem />}
           /> */}
+          <Route path={`/admin`} element={<AdminPanel />} />
         </Route>
         <Route path="*" exact={true} element={<DoesntExist />} />
       </Routes>
