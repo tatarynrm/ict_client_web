@@ -18,7 +18,6 @@ import moment from "moment";
 import "moment/locale/uk";
 const Workers = () => {
   const location = useLocation();
-  const auth = useSelector((state) => state.auth.data);
   const { users } = useSelector((state) => state.users);
   const [isLoading, setIsLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -26,6 +25,7 @@ const Workers = () => {
   const [search, setSearch] = useState("");
   const filterLocation = location.search.split("=");
   const pageLocation = filterLocation[filterLocation.length - 1];
+  const userData = useSelector((state) => state.auth.data);
   const showActiveUsers = () => {
     setSearchParams({ filter: "active" });
     dispatch(fetchActiveUsers());
@@ -59,16 +59,22 @@ const Workers = () => {
       <div className="workers__list container">
         <div
           className={
-            auth?.ISDIR === 0 ? "search__input.active" : "search__input"
+            userData?.ISDIR === 1 ||
+            userData?.KOD === 38231 ||
+            userData?.KOD === 24011
+              ? "search__input"
+              : "search__input.active"
           }
         >
-          {auth?.ISDIR === 0 ? null : (
+          {userData?.ISDIR === 1 ||
+          userData?.KOD === 38231 ||
+          userData?.KOD === 24011 ? (
             <>
               <button onClick={showActiveUsers}>Діючі</button>
               <button onClick={showFiredUsers}>Звільнені</button>
               <button onClick={resetUsersFilter}>Скинути фільтр</button>
             </>
-          )}
+          ) : null}
           <input
             type="text"
             name="search"
