@@ -9,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import AddZap from "../../components/zap/AddZap";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchActiveUsers } from "../../redux/slices/users";
+import { motion } from "framer-motion";
 import {
   changeCommentsCount,
   deleteReduxZap,
@@ -202,7 +203,12 @@ const LogisticWork = () => {
         <AddZap showAddZap={showAddZap} selectedGroup={selectedGroup} />
       ) : null}
 
-      <div className="zap__list">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5 }}
+        className="zap__list"
+      >
         {zap ? (
           zap
 
@@ -240,7 +246,7 @@ const LogisticWork = () => {
             <h2>Немає завантажень</h2>
           </div>
         )}
-      </div>
+      </motion.div>
 
       {commentsClass ? (
         <ZapComments

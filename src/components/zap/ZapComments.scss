@@ -59,10 +59,10 @@
       font-size: 19px;
       font-weight: bold;
       word-break: break-all;
-      // font-style: italic;
       font-family: monospace;
       color: black;
       padding: 0.4rem;
+      border-radius: 0.4rem;
     }
   }
 
@@ -93,9 +93,9 @@
 
       position: relative;
       border-radius: 10px;
-      padding: 1rem;
+      padding: 0.4rem;
       word-wrap: break-word;
-      background-color: rgba(255, 255, 255, 0.5);
+      background-color: rgb(167, 216, 228);
 
       &-leftside {
         // background-color: red;
@@ -104,12 +104,15 @@
         gap: 10px;
         text-align: center;
         align-items: center;
+        background-color: rgb(98, 195, 228);
+        // padding: 0.4rem;
+        border-radius: 0.4rem;
       }
       .comment__date {
         // position: absolute;
         //  bottom: 0;
         font-size: 14px;
-        color: gray;
+        color: rgb(29, 28, 28);
       }
       .comment__author {
         font-weight: bold;
@@ -118,11 +121,22 @@
 
       &-rightside {
         // background-color: red;
+        padding: 0.4rem;
+        font-size: 18px;
+        font-weight: bold;
       }
     }
     .own {
-      background-color: rgb(90, 201, 232);
-      text-decoration: underline;
+      background-color: rgb(201, 140, 116);
+      // text-decoration: underline;
+      > .manager__comment-leftside {
+        // background-color: rgb(40, 160, 190);
+        background-color: transparent;
+      }
+      > .manager__comment-rightside {
+        // background-color: rgb(21, 59, 184);
+        border-radius: 0.4rem;
+      }
     }
   }
   &-create {
@@ -144,12 +158,27 @@
 }
 .comments__control {
   width: 100%;
+  align-items: center;
+  justify-content: center;
   // background-color: red;
+  // height: 10vh;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  gap: 40px;
+  align-items: center;
+  text-align: center;
+  &-button {
+    font-size: 30px;
+  }
   input {
     width: 100%;
+    border: none;
+    outline: none;
+    padding: 0.8rem;
+    border-radius: 10px;
+  }
+  svg {
+    cursor: pointer;
   }
   // justify-content: space-between;
   // gap: 20px;
@@ -168,7 +197,7 @@
 .comments__edit {
   position: absolute;
   right: 0;
-  top: 20%;
+  top: 10%;
   cursor: pointer;
   width: 30px;
   height: 30px;
@@ -181,7 +210,7 @@
 .comment__edit-buttons {
   position: absolute;
   right: 40px;
-  top: 0px;
+  top: -10px;
   z-index: 999999;
 
   > button {

@@ -19,6 +19,7 @@ const CommentItem = ({ ref1, item }) => {
       });
       if (data.status === 200) {
         socket.emit("deleteComm", KOD_COMM);
+        setShowCommentEdit((value) => !value);
       }
     } catch (error) {
       console.log(error);
@@ -35,7 +36,7 @@ const CommentItem = ({ ref1, item }) => {
     >
       <div className="manager__comment-leftside">
         <span className="comment__author">
-          {item.KOD_OS === userData.KOD ? "" : item.PIP}
+          {item.KOD_OS === userData.KOD ? "Ви" : item.PIP}
         </span>
         {item.KOD_OS === userData.KOD ? (
           <span className="comment__date">{moment(item.DAT).calendar()}</span>

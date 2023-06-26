@@ -14,6 +14,7 @@ import { beep, beepSend } from "../../helpers/audio";
 import { FcInfo } from "react-icons/fc";
 import { FcManager, FcComments } from "react-icons/fc";
 import { FaCity } from "react-icons/fa";
+import { BiSend } from "react-icons/bi";
 import { FaCommentSlash } from "react-icons/fa";
 import { AiOutlineArrowRight, AiOutlineArrowLeft } from "react-icons/ai";
 import toTimestamp from "../../helpers/functions";
@@ -66,6 +67,7 @@ const ZapComments = ({ showComments, selectedZap }) => {
             pKodAuthor: userData?.KOD,
             pKodZap: selectedZap?.KOD,
             pComment: comment,
+            pKodComment: data.data.outBinds.pKodCom,
           });
         }
       }
@@ -80,9 +82,9 @@ const ZapComments = ({ showComments, selectedZap }) => {
           PRIM: data.pComment,
           PIP: data.PIP,
           DAT: Date.now(),
+          KOD: data.pKodComment,
         })
       );
-      // dispatch(changeCommentsCount(data.pKodZap));
     });
   }, []);
   useEffect(() => {
@@ -112,13 +114,15 @@ const ZapComments = ({ showComments, selectedZap }) => {
         <CgClose />
       </div>
       <div className="comments__item">
-        <div className="comments__item-author">
+        <div className="comments__item-author" title="Автор запиту">
           <FcManager /> <span style={{ color: "blue" }}>{selectedZap.PIP}</span>
         </div>
         <div className="comments__item-zap-info">
           <div className="cities">
-            <FaCity /> <AiOutlineArrowRight /> {selectedZap.ZAV} <br /> <br />{" "}
-            <FaCity /> <AiOutlineArrowLeft /> {selectedZap.ROZV}
+            <FaCity title="Місто завантаження" />{" "}
+            <AiOutlineArrowRight title="Місто завантаження" /> {selectedZap.ZAV}{" "}
+            <br /> <br /> <FaCity title="Місто вивантаження" />{" "}
+            <AiOutlineArrowLeft title="Місто вивантаження" /> {selectedZap.ROZV}
           </div>
           <div className="zap-text">
             <FcInfo /> <br />
@@ -155,10 +159,9 @@ const ZapComments = ({ showComments, selectedZap }) => {
             value={comment}
             onChange={(e) => setComment(e.target.value)}
             onKeyDown={handleKeyDown}
+            style={{ width: "60%" }}
           />
-          <button className="normal" onClick={addComment}>
-            Надіслати
-          </button>
+          <BiSend className="comments__control-button" onClick={addComment} />
         </div>
       </div>
     </div>
