@@ -45,6 +45,16 @@ const ZapComments = ({ showComments, selectedZap }) => {
             pKodAuthor: userData?.KOD,
             pKodZap: selectedZap?.KOD,
             pComment: comment,
+            zapAuthor: selectedZap.KOD_OS,
+            pKodComment: data.data.outBinds.pKodCom,
+          });
+          socket.emit("myZapComment", {
+            PIP: userData?.PIP,
+            pKodAuthor: userData?.KOD,
+            pKodZap: selectedZap?.KOD,
+            pComment: comment,
+            zapAuthor: selectedZap.KOD_OS,
+            pKodComment: data.data.outBinds.pKodCom,
           });
         }
       }
@@ -53,6 +63,7 @@ const ZapComments = ({ showComments, selectedZap }) => {
     }
   };
   const handleKeyDown = async (e) => {
+    // e.preventDefault();
     try {
       if ((e.key === "Enter") & (comment.length >= 3)) {
         const data = await axios.post(`/comments/add`, {
@@ -67,6 +78,15 @@ const ZapComments = ({ showComments, selectedZap }) => {
             pKodAuthor: userData?.KOD,
             pKodZap: selectedZap?.KOD,
             pComment: comment,
+            zapAuthor: selectedZap.KOD_OS,
+            pKodComment: data.data.outBinds.pKodCom,
+          });
+          socket.emit("myZapComment", {
+            PIP: userData?.PIP,
+            pKodAuthor: userData?.KOD,
+            pKodZap: selectedZap?.KOD,
+            pComment: comment,
+            zapAuthor: selectedZap.KOD_OS,
             pKodComment: data.data.outBinds.pKodCom,
           });
         }

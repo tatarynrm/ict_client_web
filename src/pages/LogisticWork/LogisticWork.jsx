@@ -18,7 +18,7 @@ import {
   refreshReduxZap,
   showEditReduxZap,
 } from "../../redux/slices/zap";
-import { notifyNewZap } from "../../utils/toasts";
+import { notifyCommentZap, notifyNewZap } from "../../utils/toasts";
 import socket from "../../utils/socket";
 import ZapItem from "../../components/zap/ZapItem";
 import ZapEditForm from "../../components/zap/ZapEditForm";
@@ -117,6 +117,15 @@ const LogisticWork = () => {
       dispatch(showEditReduxZap(data));
     });
   }, [zap]);
+  useEffect(() => {
+    socket.on("showNewComment", (data) => {
+      if (userData?.KOD === data.zapAuthor) {
+        notifyCommentZap(userData, data);
+      } else {
+        return;
+      }
+    });
+  }, []);
 
   return (
     <div className="logistic logistic__work container">

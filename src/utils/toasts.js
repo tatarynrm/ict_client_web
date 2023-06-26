@@ -29,4 +29,20 @@ export const notifyNewZap = (userData, data) =>
       theme: "light",
     }
   );
+export const notifyCommentZap = (userData, data) =>
+  toast(
+    `👉 ${data.PIP} щойно ${
+      userData?.CODE_SEX == "W" ? "додала" : "додав"
+    } нову коментар до вашої заявки ✅${data.pKodZap}`,
+    {
+      position: "bottom-left",
+      autoClose: false,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    }
+  );
 export default copyNotify;
