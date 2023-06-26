@@ -164,7 +164,7 @@
   // height: 10vh;
   display: flex;
   flex-direction: row;
-  gap: 40px;
+  gap: 10px;
   align-items: center;
   text-align: center;
   &-button {
@@ -179,6 +179,43 @@
   }
   svg {
     cursor: pointer;
+    fill: var(--button-main);
+    transition: all 0.4s ease;
+  }
+  &-send {
+    width: 60px;
+    height: 30px;
+    padding: 0.4rem;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    cursor: pointer;
+    background-color: rgb(181, 183, 184);
+    transition: all 0.4s ease;
+  }
+  &-send:hover {
+    width: 60px;
+    height: 30px;
+    background-color: rgb(35, 107, 119);
+    padding: 0.4rem;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+  &-send:hover svg {
+    transition: all 0.4s ease;
+    fill: white;
   }
   // justify-content: space-between;
   // gap: 20px;

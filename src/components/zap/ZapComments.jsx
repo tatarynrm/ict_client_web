@@ -181,7 +181,9 @@ const ZapComments = ({ showComments, selectedZap }) => {
             onKeyDown={handleKeyDown}
             style={{ width: "60%" }}
           />
-          <BiSend className="comments__control-button" onClick={addComment} />
+          <div onClick={addComment} className="comments__control-send">
+            <BiSend className="comments__control-button" />
+          </div>
         </div>
       </div>
     </div>
