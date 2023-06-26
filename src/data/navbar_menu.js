@@ -10,6 +10,7 @@ import {
 } from "react-icons/fc";
 import { FaCarCrash } from "react-icons/fa";
 import { MdCarCrash } from "react-icons/md";
+import { SiAdminer } from "react-icons/si";
 
 export const navbar_menu = [
   // { label: "Чат", link: "/chat", icon: <FcAssistant /> },
@@ -70,6 +71,13 @@ export const navbar_menu = [
     label: "Закриті завантаження",
     link: "/closed-cargos",
     icon: <MdCarCrash />,
+    status: "red",
+    isDir: true,
+  },
+  {
+    label: "Адміністрування",
+    link: "/admin",
+    icon: <SiAdminer />,
     status: "red",
     isDir: true,
   },

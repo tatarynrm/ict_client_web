@@ -56,6 +56,7 @@ const Home = () => {
     socket.emit("newUser", userData?.KOD);
   }, []);
   const now = Date.now();
+
   return (
     <div className="home container">
       <div className="home__inner">

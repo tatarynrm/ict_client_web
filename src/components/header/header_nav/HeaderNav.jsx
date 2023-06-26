@@ -16,7 +16,6 @@ const HeaderNav = () => {
       {/* {navbar_menu.map((item, idx) => (
         <MenuItem key={idx} item={item} />
       ))} */}
-
       {userData?.ISDIR !== 1
         ? navbar_menu
             .filter((dir) => dir.isDir !== true)

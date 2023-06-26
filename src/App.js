@@ -26,6 +26,8 @@ import socket from "./utils/socket";
 import CompanyFiles from "./pages/CompanyFiles/CompanyFiles";
 import ClosedCargos from "./pages/ClosedCargos/ClosedCargos";
 import AdminPanel from "./pages/AdminPanel/AdminPanel";
+import { ToastContainer } from "react-toastify";
+import { textToAllUsers } from "./utils/toasts";
 
 function App() {
   const dispatch = useDispatch();
@@ -36,7 +38,16 @@ function App() {
   useEffect(() => {
     dispatch(fetchAuthMe());
   }, []);
-
+  useEffect(() => {
+    socket.on("windowReloadAllUsers", (data) => {
+      window.location.reload();
+    });
+  }, [socket]);
+  useEffect(() => {
+    socket.on("showTextToAllUsers", (data) => {
+      textToAllUsers(data);
+    });
+  }, [socket]);
   return (
     <>
       <Header />
@@ -70,6 +81,7 @@ function App() {
       </Routes>
       {zapEditStatus ? <ZapEditForm /> : null}
       {/* <Footer /> */}
+      <ToastContainer />
     </>
   );
 }

@@ -39,4 +39,22 @@ export const notifyCommentZap = (userData, data) =>
       theme: "dark",
     }
   );
+export const textToAllUsers = (text) =>
+  toast(
+    `АДМІНІСТРАТОР:
+
+
+
+  ${text}`,
+    {
+      position: "top-center",
+      autoClose: false,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: 10,
+      theme: "dark",
+    }
+  );
 export default copyNotify;
