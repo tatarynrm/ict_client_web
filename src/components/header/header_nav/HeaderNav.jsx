@@ -16,11 +16,14 @@ const HeaderNav = () => {
       {/* {navbar_menu.map((item, idx) => (
         <MenuItem key={idx} item={item} />
       ))} */}
-      {userData?.ISDIR !== 1
-        ? navbar_menu
+      {userData?.ISDIR === 1 ||
+      userData?.KOD === 38231 ||
+      userData?.KOD === 24011 ||
+      userData?.KOD === 4611
+        ? navbar_menu.map((item, idx) => <MenuItem key={idx} item={item} />)
+        : navbar_menu
             .filter((dir) => dir.isDir !== true)
-            .map((item, idx) => <MenuItem key={idx} item={item} />)
-        : navbar_menu.map((item, idx) => <MenuItem key={idx} item={item} />)}
+            .map((item, idx) => <MenuItem key={idx} item={item} />)}
     </div>
   );
 };

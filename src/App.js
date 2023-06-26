@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Workers from "./pages/Workers/Workers";
 import Worker from "./pages/Worker/Worker";
@@ -35,6 +35,7 @@ function App() {
   const token = window.localStorage.getItem("token");
   const userData = useSelector((state) => state.auth.data);
   const zapEditStatus = useSelector((state) => state.edit.zapEdit);
+  const navigate = useNavigate();
   useEffect(() => {
     dispatch(fetchAuthMe());
   }, []);
@@ -53,6 +54,7 @@ function App() {
       textToAllUsers(data);
     });
   }, [socket]);
+
   return (
     <>
       <Header />
@@ -80,7 +82,11 @@ function App() {
             path={`/current-transportation/:id`}
             element={<CurrentTransportationItem />}
           /> */}
-          <Route path={`/admin`} element={<AdminPanel />} />
+          {userData?.ISDIR === 1 ||
+          userData?.KOD === 38231 ||
+          userData?.KOD === 24011 ? (
+            <Route path={`/admin`} element={<AdminPanel />} />
+          ) : null}
         </Route>
         <Route path="*" exact={true} element={<DoesntExist />} />
       </Routes>
