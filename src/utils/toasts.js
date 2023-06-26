@@ -13,11 +13,7 @@ const copyNotify = () =>
   });
 export const notifyNewZap = (userData, data) =>
   toast(
-    `👉 ${data.PIP} щойно ${
-      userData?.CODE_SEX == "W" ? "додала" : "додав"
-    } нову заявку  ✅${data.ZAP_KOD} Завантаження: ${
-      data.pZav
-    } - Вивантаження: ${data.pRozv}`,
+    `👉 Користувач ${data.PIP} щойно додав нову заявку  ✅${data.ZAP_KOD} Завантаження: ${data.pZav} - Вивантаження: ${data.pRozv}`,
     {
       position: "bottom-right",
       autoClose: false,
@@ -31,9 +27,7 @@ export const notifyNewZap = (userData, data) =>
   );
 export const notifyCommentZap = (userData, data) =>
   toast(
-    `👉 ${data.PIP} щойно ${
-      userData?.CODE_SEX == "W" ? "додала" : "додав"
-    } нову коментар до вашої заявки ✅${data.pKodZap}`,
+    `👉 Користувач ${data.PIP} щойно новий коментар до вашої заявки ✅${data.pKodZap}`,
     {
       position: "bottom-left",
       autoClose: false,
