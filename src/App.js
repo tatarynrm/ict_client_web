@@ -39,6 +39,11 @@ function App() {
     dispatch(fetchAuthMe());
   }, []);
   useEffect(() => {
+    if (userData) {
+      socket.emit("newUser", userData);
+    }
+  }, [userData]);
+  useEffect(() => {
     socket.on("windowReloadAllUsers", (data) => {
       window.location.reload();
     });

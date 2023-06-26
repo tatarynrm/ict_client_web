@@ -44,15 +44,20 @@ const AdminPanel = () => {
           </form>
         </div>
         <div className="admin__container">
-          {activeUsers
-            ? activeUsers.map((item, idx) => {
+          {activeUsers ? (
+            <div className="active__users">
+              {activeUsers.map((item, idx) => {
                 return (
                   <div key={idx} className="user">
-                    <p>{item.userId}</p>
+                    <div className="user__info">{item.PIP}</div>
+                    <div className="user__info">{item.userId}</div>
+                    <div className="user__info">{item.MAIL}</div>
+                    <div className="user__info">STATUS: ONLINE</div>
                   </div>
                 );
-              })
-            : null}
+              })}
+            </div>
+          ) : null}
         </div>
       </div>
     </div>

@@ -50,12 +50,22 @@ const LogisticWork = () => {
     setAddZap((value) => !value);
   };
   useEffect(() => {
-    socket.emit("newUser", userData?.KOD);
-  }, []);
+    if (userData) {
+      socket.emit("newUser", userData);
+    }
+  }, [userData]);
   useEffect(() => {
     socket.on("showNewComment", (data) => {
       dispatch(changeCommentsCount(data.pKodZap));
     });
+  }, []);
+  useEffect(() => {
+    const getUsers = () => {
+      socket.on("getUsers", (data) => {
+        console.log(data);
+      });
+    };
+    getUsers();
   }, []);
   useEffect(() => {
     const date = new Date();

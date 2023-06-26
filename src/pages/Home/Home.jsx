@@ -53,8 +53,10 @@ const Home = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    socket.emit("newUser", userData?.KOD);
-  }, []);
+    if (userData) {
+      socket.emit("newUser", userData);
+    }
+  }, [userData]);
   const now = Date.now();
 
   return (
@@ -79,10 +81,9 @@ const Home = () => {
             <p>
               Якщо ви вже ставили коментар в заявці, кількість коментарів
               виділяється синім кольором!
-              <p>
-                Якщо ж не приймали участь у коментуванні,колір залишається
-                чорним!
-              </p>
+            </p>
+            <p>
+              Якщо ж не приймали участь у коментуванні,колір залишається чорним!
             </p>
             <img style={{ width: "20%" }} src={commentsCountPNG} alt="png" />
           </code>
