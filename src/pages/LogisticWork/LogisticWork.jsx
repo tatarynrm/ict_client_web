@@ -145,12 +145,15 @@ const LogisticWork = () => {
         </button>
         <div className="form__control">
           <input
+            className="zap__search-input"
             onChange={(e) => setSearchFilter(e.target.value)}
             style={{
               border: "none",
-              borderBottom: "1px solid rgb(76, 135, 202)",
+              // borderBottom: "1px solid rgb(76, 135, 202)",
               outline: "none",
               width: "100%",
+              padding: "0.4rem",
+              // borderRadius: "10px",
             }}
             type="text"
             placeholder="Пошук: місто,прізвище"

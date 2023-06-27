@@ -195,7 +195,7 @@
 
 .zap__item-kod {
   font-weight: bold;
-  color: blue;
+  color: var(--body-color);
 }
 
 .zap__edit-form {
@@ -204,6 +204,14 @@
   top: 0;
   width: 100%;
   height: 100%;
+}
+.zap__search-input {
+  color: var(--body-color);
+  background-color: var(--background-color);
+  border-bottom: 1px solid var(--body-color);
+}
+.zap__search-input::placeholder {
+  color: var(--body-color);
 }
 .cities {
   color: rgb(226, 146, 41);

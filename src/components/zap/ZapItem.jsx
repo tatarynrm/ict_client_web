@@ -16,6 +16,7 @@ const ZapItem = ({ item, showComments, showAddZap, setEditZap }) => {
     setZapMenu((val) => !val);
   };
   const newZapColor = Date.now() - moment(item.DAT).valueOf();
+  const selectedTheme = localStorage.getItem("selectedTheme");
   return (
     <div onClick={() => showComments(item)} className={`zap zap-${item.KOD}`}>
       {newZapColor <= 1800000 ? (
@@ -39,19 +40,23 @@ const ZapItem = ({ item, showComments, showAddZap, setEditZap }) => {
               <FaCommentSlash
                 title="Коментарів немає"
                 className="comments__tooltip"
+                fill="green"
               />
             ) : (
               <AiOutlineComment
                 style={{ color: item.COUNTMYCOMM > 0 ? "blue" : "black" }}
                 title="Кількість коментарів"
+                fill="teal"
+                fontSize={"20px"}
               />
             )}
 
             <span
               style={{
-                color: item.COUNTMYCOMM > 0 ? "blue" : "black",
+                color: item.COUNTMYCOMM > 0 ? "blue" : "grey",
+                // color: selectedTheme === "dark" ? "white" : "black",
                 fontWeight: item.COUNTMYCOMM > 0 ? "bold" : "normal",
-                fontSize: item.COUNTMYCOMM > 0 ? "20px" : "14px",
+                fontSize: item.COUNTMYCOMM > 0 ? "20px" : "20px",
               }}
             >
               {item.COUNTCOMM <= 0 ? null : item.COUNTCOMM}
