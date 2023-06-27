@@ -2,4 +2,20 @@
   --button-main: rgb(76, 135, 202);
   --color-white: white;
   --color-black: black;
+  --body-background: white;
+  --body-color: black;
+  --link-color: navy;
+}
+
+[data-theme="dark"] {
+  --button-main: rgb(76, 135, 202);
+  --color-white: white;
+  --color-black: black;
+  --body-background: #282c34;
+  --body-color: white;
+  --link-color: cyan;
+}
+
+* {
+  transition: all 0.1s ease;
 }

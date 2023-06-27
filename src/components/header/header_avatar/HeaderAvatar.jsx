@@ -7,6 +7,7 @@ import {
 import Button from "../../button/Button";
 import { FcExpand, FcRightDown2 } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
+import DarkMode from "../../darkMode/DarkMode";
 
 const HeaderAvatar = () => {
   const dispatch = useDispatch();
@@ -28,10 +29,11 @@ const HeaderAvatar = () => {
       </div>
       <div className="header__avatar-options">
         <div className="header__avatar-contacts">
-          <p style={{ color: "blue" }}>Тел.моб: {userData?.TEL}</p>
-          <p style={{ color: "blue" }}>E-mail: {userData?.MAIL}</p>
-          <p style={{ color: "blue" }}>Код: {userData?.KOD}</p>
+          <p>Тел.моб: {userData?.TEL}</p>
+          <p>E-mail: {userData?.MAIL}</p>
+          <p>Код: {userData?.KOD}</p>
         </div>
+        <DarkMode />
         <button onClick={logoutFromAccount} className="danger">
           Вийти з аккаунту
         </button>

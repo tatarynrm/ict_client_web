@@ -6,6 +6,7 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+    color: var(--body-color);
   }
   &__items {
     display: flex;
@@ -23,5 +24,12 @@
     text-align: left;
     border-bottom: 1px solid var(--button-main);
     cursor: inherit;
+    color: var(--body-color);
+  }
+  &-item {
+    color: var(--body-color);
+    button {
+      color: var(--body-color);
+    }
   }
 }

@@ -11,12 +11,13 @@ button {
   background-color: transparent;
   border: 1px solid var(--button-main);
   transition: all 0.5s ease;
+  color: var(--body-color);
 
   &:hover {
     background-color: var(--button-main);
     border: 1px solid var(--color-white);
     transition: all 0.5s ease;
-    color: var(--color-white);
+    color: var(--body-color);
   }
 }
 .danger {
@@ -28,7 +29,7 @@ button {
     background-color: rgba(254, 0, 0, 0.4);
     border: 1px solid var(--color-white);
     transition: all 0.5s ease;
-    color: var(--color-white);
+    color: var(--body-color);
   }
 }
 
