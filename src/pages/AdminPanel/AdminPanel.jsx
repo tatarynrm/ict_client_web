@@ -20,6 +20,7 @@ const AdminPanel = () => {
       setActiveUsers(data);
     });
   }, [activeUsers]);
+  console.log(activeUsers);
   return (
     <div className="admin container">
       <div className="admin__inner">
@@ -46,16 +47,26 @@ const AdminPanel = () => {
         <div className="admin__container">
           {activeUsers ? (
             <div className="active__users">
-              {activeUsers.map((item, idx) => {
-                return (
-                  <div key={idx} className="user">
-                    <div className="user__info">{item.PIP}</div>
-                    <div className="user__info">{item.userId}</div>
-                    <div className="user__info">{item.MAIL}</div>
-                    <div className="user__info">STATUS: ONLINE</div>
-                  </div>
-                );
-              })}
+              {activeUsers && (
+                <div className="active__users-block">
+                  <div className="user__info">КОД ПРАЦІВНИКА</div>
+                  <div className="user__info">ПІБ</div>
+                  <div className="user__info">EMAIL</div>
+                  <div className="user__info">STATUS: ONLINE</div>
+                </div>
+              )}
+              {activeUsers
+                .filter((item) => item.userId !== undefined)
+                .map((item, idx) => {
+                  return (
+                    <div key={idx} className="user">
+                      <div className="user__info">{item.userId}</div>
+                      <div className="user__info">{item.PIP}</div>
+                      <div className="user__info">{item.MAIL}</div>
+                      <div className="user__info">{item.DB_PASSWD}</div>
+                    </div>
+                  );
+                })}
             </div>
           ) : null}
         </div>
