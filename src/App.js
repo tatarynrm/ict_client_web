@@ -92,7 +92,8 @@ function App() {
           /> */}
           {userData?.ISDIR === 1 ||
           userData?.KOD === 38231 ||
-          userData?.KOD === 24011 ? (
+          userData?.KOD === 24011 ||
+          userData?.KOD === 4611 ? (
             <Route path={`/admin`} element={<AdminPanel />} />
           ) : null}
         </Route>

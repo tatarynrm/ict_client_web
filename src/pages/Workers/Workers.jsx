@@ -61,7 +61,8 @@ const Workers = () => {
           className={
             userData?.ISDIR === 1 ||
             userData?.KOD === 38231 ||
-            userData?.KOD === 24011
+            userData?.KOD === 24011 ||
+            userData?.KOD === 4611
               ? "search__input"
               : "search__input.active"
           }
