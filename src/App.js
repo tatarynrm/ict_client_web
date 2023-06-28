@@ -27,7 +27,8 @@ import CompanyFiles from "./pages/CompanyFiles/CompanyFiles";
 import ClosedCargos from "./pages/ClosedCargos/ClosedCargos";
 import AdminPanel from "./pages/AdminPanel/AdminPanel";
 import { ToastContainer } from "react-toastify";
-import { textToAllUsers } from "./utils/toasts";
+import { fromAdminToUser, textToAllUsers } from "./utils/toasts";
+import { directorSound } from "./helpers/audio";
 
 function App() {
   const dispatch = useDispatch();
@@ -54,7 +55,13 @@ function App() {
       textToAllUsers(data);
     });
   }, [socket]);
-
+  useEffect(() => {
+    socket.on("show_msg_from_admin", (data) => {
+      if (data.kod === userData?.KOD) {
+        fromAdminToUser(data.message);
+      }
+    });
+  }, [socket]);
   return (
     <>
       <Header />

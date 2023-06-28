@@ -26,3 +26,13 @@
     border-radius: 10px;
   }
 }
+.admin__send-message {
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+  textarea {
+    height: 50px;
+    width: 200px;
+    resize: none;
+  }
+}

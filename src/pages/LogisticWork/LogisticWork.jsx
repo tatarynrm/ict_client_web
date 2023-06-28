@@ -18,7 +18,11 @@ import {
   refreshReduxZap,
   showEditReduxZap,
 } from "../../redux/slices/zap";
-import { notifyCommentZap, notifyNewZap } from "../../utils/toasts";
+import {
+  fromAdminToUser,
+  notifyCommentZap,
+  notifyNewZap,
+} from "../../utils/toasts";
 import socket from "../../utils/socket";
 import ZapItem from "../../components/zap/ZapItem";
 import ZapEditForm from "../../components/zap/ZapEditForm";
@@ -59,14 +63,7 @@ const LogisticWork = () => {
       dispatch(changeCommentsCount(data.pKodZap));
     });
   }, []);
-  useEffect(() => {
-    const getUsers = () => {
-      socket.on("getUsers", (data) => {
-        console.log(data);
-      });
-    };
-    getUsers();
-  }, []);
+
   useEffect(() => {
     const date = new Date();
     date.toISOString();
