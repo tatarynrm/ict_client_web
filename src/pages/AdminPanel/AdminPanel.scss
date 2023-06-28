@@ -2,8 +2,12 @@
   &__inner {
     margin-top: 20px;
   }
-
+  &__nav {
+    display: flex;
+    gap: 10px;
+  }
   .active__users {
+    color: var(--body-color);
     > .user {
       margin-top: 10px;
       display: flex;
@@ -22,7 +26,7 @@
     gap: 10px;
     padding: 0.4rem;
     margin-top: 10px;
-    background-color: rgb(199, 231, 148);
+    background-color: rgb(27, 199, 12);
     border-radius: 10px;
   }
 }
@@ -34,5 +38,15 @@
     height: 50px;
     width: 200px;
     resize: none;
+  }
+}
+.admin__messages-to-users {
+  > form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  input {
+    height: 40px;
   }
 }

@@ -17,7 +17,9 @@ const AdminPanel = () => {
   const handleSubmitMessages = async (e) => {
     e.preventDefault();
     e.stopPropagation();
-    socket.emit("textToAllUsers", textToAllUsers);
+    if (window.confirm("Відправити повідомлення усім активним користувачам?")) {
+      socket.emit("textToAllUsers", textToAllUsers);
+    }
   };
   useEffect(() => {
     socket.on("showActiveUsers", (data) => {
@@ -31,33 +33,41 @@ const AdminPanel = () => {
       kod: item.userId,
     });
   };
-  console.log(activeUsers);
   return (
     <div className="admin container">
       <div className="admin__inner">
         <div className="admin__nav">
-          <button onClick={fetchActiveUsers} className="normal">
-            Активні юзери
-          </button>
-          <button onClick={reloadWindow} className="normal">
-            Перезавантажити сторінки
-          </button>
+          <div className="fast__buttons">
+            <button onClick={fetchActiveUsers} className="normal">
+              Активні юзери
+            </button>
+            <button onClick={reloadWindow} className="normal">
+              Перезавантажити сторінки
+            </button>
+          </div>
+          <div className="admin__messages-to-users">
+            <form onSubmit={handleSubmitMessages}>
+              <div className="form__control">
+                <input
+                  type="text"
+                  onChange={(e) => setTextToAllUsers(e.target.value)}
+                  value={textToAllUsers}
+                />
+              </div>
+              <button className="normal">Відправити</button>
+            </form>
+          </div>
         </div>
-        <div className="admin__messages-to-users">
-          <form onSubmit={handleSubmitMessages}>
-            <div className="form__control">
-              <input
-                type="text"
-                onChange={(e) => setTextToAllUsers(e.target.value)}
-                value={textToAllUsers}
-              />
-            </div>
-            <button className="normal">Відправити</button>
-          </form>
-        </div>
+
         <div className="admin__container">
           {activeUsers ? (
             <div className="active__users">
+              <span>
+                <b>
+                  Користувачів на сайті:
+                  <span style={{ color: "red" }}> {activeUsers.length}</span>
+                </b>
+              </span>
               {activeUsers && (
                 <div className="active__users-block">
                   <div className="user__info">КОД ПРАЦІВНИКА</div>
