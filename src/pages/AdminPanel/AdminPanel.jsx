@@ -2,10 +2,11 @@ import React, { useEffect } from "react";
 import "./AdminPanel.scss";
 import { useState } from "react";
 import socket from "../../utils/socket";
+import UsersActions from "../../components/admin_components/UsersActions";
 const AdminPanel = () => {
   const [textToAllUsers, setTextToAllUsers] = useState("");
   const [activeUsers, setActiveUsers] = useState();
-  const [action, setAction] = useState(false);
+
   const [message, setMessage] = useState("");
   const fetchActiveUsers = () => {
     socket.emit("activeUsers");
@@ -69,37 +70,13 @@ const AdminPanel = () => {
                 .filter((item) => item.userId !== undefined)
                 .map((item, idx) => {
                   return (
-                    <React.Fragment key={idx}>
-                      <div className="user">
-                        <div className="user__info">{item.userId}</div>
-                        <div className="user__info">{item.PIP}</div>
-                        <div className="user__info">{item.MAIL}</div>
-                        <div className="user__info">{item.DB_PASSWD}</div>
-                        <button
-                          className="normal"
-                          onClick={(e) => setAction((value) => !value)}
-                        >
-                          Виконати дії
-                        </button>
-                      </div>
-                      {action && (
-                        <div className="admin__user-action">
-                          <div className="admin__send-message">
-                            <textarea
-                              name="admin_text"
-                              value={message}
-                              onChange={(e) => setMessage(e.target.value)}
-                            ></textarea>
-                            <button
-                              onClick={() => sendMessageToUser(item)}
-                              className="normal"
-                            >
-                              Написати {item.PIP}
-                            </button>
-                          </div>
-                        </div>
-                      )}
-                    </React.Fragment>
+                    <UsersActions
+                      item={item}
+                      key={idx}
+                      message={message}
+                      setMessage={setMessage}
+                      sendMessageToUser={sendMessageToUser}
+                    />
                   );
                 })}
             </div>

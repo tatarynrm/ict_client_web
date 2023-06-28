@@ -57,9 +57,7 @@ function App() {
   }, [socket]);
   useEffect(() => {
     socket.on("show_msg_from_admin", (data) => {
-      if (data.kod === userData?.KOD) {
-        fromAdminToUser(data.message);
-      }
+      fromAdminToUser(data.message);
     });
   }, [socket]);
   return (
