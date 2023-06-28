@@ -59,6 +59,7 @@ function App() {
     socket.on("show_msg_from_admin", (data) => {
       if (userData?.KOD === data.kod) {
         fromAdminToUser(data.message);
+        directorSound();
       }
     });
   }, [socket, userData]);
