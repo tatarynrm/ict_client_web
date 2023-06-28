@@ -69,7 +69,8 @@ const Workers = () => {
         >
           {userData?.ISDIR === 1 ||
           userData?.KOD === 38231 ||
-          userData?.KOD === 24011 ? (
+          userData?.KOD === 24011 ||
+          userData?.KOD === 4611 ? (
             <>
               <button onClick={showActiveUsers}>Діючі</button>
               <button onClick={showFiredUsers}>Звільнені</button>
